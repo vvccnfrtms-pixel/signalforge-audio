@@ -31,9 +31,9 @@
         <svg id="hero-wave-svg" class="hero-waveform" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#FFC35B"/>
-              <stop offset="50%" stop-color="#FF8C00"/>
-              <stop offset="100%" stop-color="#FFC35B"/>
+              <stop offset="0%" stop-color="#FFD84B"/>
+              <stop offset="50%" stop-color="#FFCC33"/>
+              <stop offset="100%" stop-color="#FFD84B"/>
             </linearGradient>
             <filter id="wave-glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
@@ -47,11 +47,6 @@
         </svg>
 
         <img src="assets/img/amp-right.png" alt="Amp and speaker" class="hero-side-img right-img"/>
-      </div>
-      <div class="hero-slogan">
-        <h2>Boutique Tone. Forged to Last.</h2>
-        <p>Hand-tested in East London, South Africa. Premium guitar pedals built for recording and stage. Limited runs. Global shipping.</p>
-        <a class="btn" href="products.html">Shop Pedals</a>
       </div>
     </section>
 
@@ -101,20 +96,12 @@
   <script>
   (function(){
     const SAMPLES = 200;
-    const WIDTH_DESKTOP = 1000;
-    const WIDTH_MOBILE = 600; // ~40% shorter
-    const BASE_Y_DESKTOP = 100;
-    const BASE_Y_MOBILE = 50; // 50% shorter
+    const WIDTH = 1000;
+    const BASE_Y = 100;
     const MAX_AMP = 45;
-
     const svg = document.getElementById('hero-wave-svg');
     const wave = document.getElementById('wave-main');
     let t=0;
-
-    // Determine if mobile
-    const isMobile = window.matchMedia('(max-width:420px)').matches;
-    const WIDTH = isMobile ? WIDTH_MOBILE : WIDTH_DESKTOP;
-    const BASE_Y = isMobile ? BASE_Y_MOBILE : BASE_Y_DESKTOP;
 
     const xs = Array.from({length:SAMPLES+1}, (_,i)=> (i/SAMPLES)*WIDTH);
 
