@@ -11,4 +11,10 @@
 
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0
+body{
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(ellipse at 10% 10%, rgba(255,255,255,0.02), transparent 8%),
+    linear-gradient(180deg,#050607 0%, #0b0d0f 100%);
+  -webkit-font
