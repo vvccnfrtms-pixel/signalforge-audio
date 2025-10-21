@@ -33,9 +33,9 @@ body{
 .main-nav .cta{background:var(--accent-dark);color:#111;padding:8px 16px;border-radius:6px;font-weight:700;}
 
 /* Hero */
-.hero{display:flex;justify-content:center;align-items:center;padding:60px 0;position:relative;}
+.hero{display:flex;justify-content:center;align-items:center;padding:40px 0;position:relative;}
 .hero-inner{display:flex;justify-content:center;align-items:center;width:100%;position:relative;}
-.hero-waveform{flex:1;height:75px;overflow:visible;pointer-events:none;}
+.hero-waveform{flex:1;height:80px;overflow:visible;pointer-events:none; margin-top:6px;} /* moved closer */
 .hero-waveform polyline{stroke-linecap:round;stroke-linejoin:round;}
 
 /* Features */
@@ -68,23 +68,4 @@ body{
   padding:10px 16px;
   border-radius:8px;
   text-decoration:none;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-.btn-outline:hover{
-  background:var(--accent);
-  color:#111;
-}
-
-/* Build for profit */
-.build-for-profit{
-  padding:36px 0;
-  text-align:center;
-}
-.build-for-profit h2{font-size:28px;margin-bottom:14px;}
-.build-for-profit p{max-width:700px;margin:0 auto 12px;}
-
-/* Footer */
-.site-footer{
-  padding:30px 0;
-  color:var(--muted);
-  border-top:1px solid rgba(255,
+ 
