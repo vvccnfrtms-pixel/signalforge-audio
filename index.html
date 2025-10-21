@@ -14,7 +14,6 @@
       <div class="brand">
         <h1 class="logo-text">SignalForge <span class="logo-sub">Audio</span></h1>
       </div>
-
       <nav class="main-nav" aria-label="Main navigation">
         <a href="products.html">Products</a>
         <a href="about.html">About</a>
@@ -27,9 +26,8 @@
   <main>
     <section class="hero">
       <div class="container hero-inner">
-        <img src="assets/img/guitar-left.png" alt="Guitar and pedal illustration" class="hero-side-img left-img"/>
+        <img src="assets/img/guitar-left.png" alt="Guitar and pedal" class="hero-side-img left-img"/>
         
-        <!-- Waveform SVG between the two images -->
         <svg id="hero-wave-svg" class="hero-waveform" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
@@ -48,7 +46,7 @@
           <polyline id="wave-main" fill="none" stroke="url(#wave-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wave-glow)"></polyline>
         </svg>
 
-        <img src="assets/img/amp-right.png" alt="Amp and speaker illustration" class="hero-side-img right-img"/>
+        <img src="assets/img/amp-right.png" alt="Amp and speaker" class="hero-side-img right-img"/>
       </div>
     </section>
 
@@ -96,33 +94,38 @@
   <script src="assets/js/shop.js" defer></script>
 
   <script>
-  // Hero waveform animation
   (function(){
     const SAMPLES = 200;
     const WIDTH = 1000;
     const BASE_Y = 100;
-    const AMP = 40;
-    const FREQ = 1.8;
-    const SPEED = 0.1;
+    const MAX_AMP = 45;
     const svg = document.getElementById('hero-wave-svg');
     const wave = document.getElementById('wave-main');
-    let t = 0;
+    let t=0;
 
-    const xs = Array.from({length:SAMPLES+1}, (_,i) => (i/SAMPLES)*WIDTH);
+    const xs = Array.from({length:SAMPLES+1}, (_,i)=> (i/SAMPLES)*WIDTH);
+
+    function distortedY(nx){
+      // Base sine
+      let y = Math.sin(nx*6*Math.PI + t*1.2);
+      // High freq jitter
+      y += 0.3*Math.sin(nx*20*Math.PI + t*4.5);
+      // Random distortion spikes
+      y += (Math.random()-0.5)*0.15;
+      return y;
+    }
 
     function animateWave(){
       const points = xs.map((x,i)=>{
         const nx = i/SAMPLES;
-        const y = BASE_Y + AMP*Math.sin((nx*FREQ*2*Math.PI) + t) 
-                  + AMP*0.35*Math.sin((nx*FREQ*4*Math.PI) + t*1.8)
-                  + AMP*0.15*Math.sin((nx*FREQ*8*Math.PI) + t*3.5);
+        const y = BASE_Y + distortedY(nx)*MAX_AMP;
         return `${x},${y.toFixed(2)}`;
       }).join(' ');
-
       wave.setAttribute('points', points);
-      t += SPEED;
+      t += 0.1 + 0.03*Math.sin(t); // subtle rhythmic speed variation
       requestAnimationFrame(animateWave);
     }
+
     animateWave();
     document.getElementById('year').textContent = new Date().getFullYear();
   })();
