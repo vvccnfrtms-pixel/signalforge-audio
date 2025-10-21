@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gallery — SignalForge Audio</title>
+  <meta name="description" content="Explore the SignalForge Audio gallery — boutique guitar pedals hand-tested in East London, South Africa." />
+  <link rel="icon" href="assets/img/logo.svg" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <svg><!-- Same logo SVG --></svg>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a class="cta" href="products.html">Shop</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Gallery</h1>
+      <p>Browse our boutique pedal designs, studio shots, and limited edition finishes. Every pedal is hand-tested for premium tone.</p>
+    </section>
+
+    <section class="grid gallery-grid">
+      <div class="card"><img src="assets/img/gallery1.jpg" alt="Pedal 1"><h4>Classic Overdrive</h4></div>
+      <div class="card"><img src="assets/img/gallery2.jpg" alt="Pedal 2"><h4>Vintage Delay</h4></div>
+      <div class="card"><img src="assets/img/gallery3.jpg" alt="Pedal 3"><h4>Fuzz Destroyer</h4></div>
+      <div class="card"><img src="assets/img/gallery4.jpg" alt="Pedal 4"><h4>Reverb Tank</h4></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> SignalForge Audio — Designed & hand-tested in East London, South Africa.</small>
+      <div class="social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="YouTube">YT</a>
+        <a href="#" aria-label="TikTok">TT</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/shop.js" defer></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
