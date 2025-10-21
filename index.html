@@ -23,29 +23,46 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-  <!-- Header with Animated SVG Logo -->
+  <!-- Header with Corrected Animated SVG Logo -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
         <svg xmlns="http://www.w3.org/2000/svg" width="500" height="120" viewBox="0 0 500 120">
+          <!-- Background -->
           <rect width="500" height="120" fill="#0b0c0d"/>
-          <text x="20" y="70" font-family="Montserrat, sans-serif" font-size="40" font-weight="700" fill="#ffffff">SIGNAL</text>
-          <text x="200" y="70" font-family="Montserrat, sans-serif" font-size="40" font-weight="700" fill="#ffffff">RGE</text>
-          <text x="160" y="100" font-family="Montserrat, sans-serif" font-size="18" font-weight="300" fill="#e6eef3">Audio</text>
-          <polyline id="wave-back" points="0,25 5,15 10,30 15,10 20,25 25,15 30,25 35,20 40,25" stroke="#ff6b35" stroke-width="2" fill="none" opacity="0.5">
-            <animate attributeName="points" dur="2.5s" repeatCount="indefinite" 
-              values="
-              0,25 5,15 10,30 15,10 20,25 25,15 30,25 35,20 40,25;
-              0,20 5,25 10,15 15,30 20,10 25,25 30,15 35,25 40,20;
-              0,25 5,15 10,30 15,10 20,25 25,15 30,25 35,20 40,25"/>
-          </polyline>
-          <polyline id="wave-front" points="0,20 5,10 10,35 15,5 20,30 25,10 30,25 35,15 40,25" stroke="#ffffff" stroke-width="3" fill="none">
-            <animate attributeName="points" dur="2s" repeatCount="indefinite" 
-              values="
-              0,20 5,10 10,35 15,5 20,30 25,10 30,25 35,15 40,25;
-              0,15 5,25 10,10 15,35 20,5 25,30 30,10 35,25 40,15;
-              0,20 5,10 10,35 15,5 20,30 25,10 30,25 35,15 40,25"/>
-          </polyline>
+          
+          <!-- Brand Name -->
+          <text x="20" y="60" font-family="Montserrat, sans-serif" font-size="40" font-weight="700" fill="#ffffff">
+            SIGNALFORGE
+          </text>
+          
+          <!-- Subtext -->
+          <text x="20" y="90" font-family="Montserrat, sans-serif" font-size="18" font-weight="300" fill="#e6eef3">
+            Audio
+          </text>
+
+          <!-- Waveform Group: positioned behind brand name -->
+          <g transform="translate(0, 50)">
+            <!-- Back Wave -->
+            <polyline id="wave-back" points="0,25 5,15 10,30 15,10 20,25 25,15 30,25 35,20 40,25" 
+              stroke="#ff6b35" stroke-width="2" fill="none" opacity="0.5">
+              <animate attributeName="points" dur="2.5s" repeatCount="indefinite" 
+                values="
+                0,25 5,15 10,30 15,10 20,25 25,15 30,25 35,20 40,25;
+                0,20 5,25 10,15 15,30 20,10 25,25 30,15 35,25 40,20;
+                0,25 5,15 10,30 15,10 20,25 25,15 30,25 35,20 40,25"/>
+            </polyline>
+
+            <!-- Front Wave -->
+            <polyline id="wave-front" points="0,20 5,10 10,35 15,5 20,30 25,10 30,25 35,15 40,25" 
+              stroke="#ffffff" stroke-width="3" fill="none">
+              <animate attributeName="points" dur="2s" repeatCount="indefinite" 
+                values="
+                0,20 5,10 10,35 15,5 20,30 25,10 30,25 35,15 40,25;
+                0,15 5,25 10,10 15,35 20,5 25,30 30,10 35,25 40,15;
+                0,20 5,10 10,35 15,5 20,30 25,10 30,25 35,15 40,25"/>
+            </polyline>
+          </g>
         </svg>
       </div>
 
