@@ -1,0 +1,27 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install deps
+        run: |
+          # If you have a build step, run it here. For now nothing to build.
+          echo "No build step defined"
+      - name: Deploy to Pages
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: ./
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
