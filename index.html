@@ -13,20 +13,8 @@
     <div class="container header-inner">
       <div class="brand">
         <h1 class="logo-text">SignalForge <span class="logo-sub">Audio</span></h1>
-      </div>
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="products.html">Products</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a class="cta" href="products.html">Shop</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <svg id="hero-wave-svg" class="hero-waveform" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
+        <!-- Waveform moved closer to text -->
+        <svg id="hero-wave-svg" class="hero-waveform" viewBox="0 0 1000 150" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stop-color="#FFD84B"/>
@@ -44,8 +32,16 @@
           <polyline id="wave-main" fill="none" stroke="url(#wave-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wave-glow)"></polyline>
         </svg>
       </div>
-    </section>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a class="cta" href="products.html">Shop</a>
+      </nav>
+    </div>
+  </header>
 
+  <main>
     <section class="features container">
       <article>
         <h3>Premium Components</h3>
@@ -93,8 +89,8 @@
   (function(){
     const SAMPLES = 200;
     const WIDTH = 1000;
-    const BASE_Y = 100;
-    const MAX_AMP = 40; // reduced for better distortion look
+    const BASE_Y = 75; // moved up closer to SignalForge text
+    const MAX_AMP = 40;
     const BPM = 140;
     const beatPeriod = 60 / BPM;
     const wave = document.getElementById('wave-main');
@@ -103,11 +99,10 @@
     const xs = Array.from({length:SAMPLES+1}, (_,i)=> (i/SAMPLES)*WIDTH);
 
     function distortedGuitarWave(nx){
-      // simulate distorted guitar: jagged, fuzzed waveform with harmonic content
-      let y = Math.sin(nx*4*Math.PI + t*6) * 0.6;  // base sine
-      y += Math.sin(nx*12*Math.PI + t*18) * 0.2;   // high harmonic
-      y += (Math.random()-0.5)*0.15;              // noise / fuzz
-      y += Math.sin(t*2*Math.PI/beatPeriod) * 0.25; // rhythmic pulsing (BPM)
+      let y = Math.sin(nx*4*Math.PI + t*6) * 0.6;
+      y += Math.sin(nx*12*Math.PI + t*18) * 0.2;
+      y += (Math.random()-0.5)*0.15;
+      y += Math.sin(t*2*Math.PI/beatPeriod) * 0.25;
       return y;
     }
 
