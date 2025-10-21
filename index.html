@@ -13,25 +13,6 @@
     <div class="container header-inner">
       <div class="brand">
         <h1 class="logo-text">SignalForge <span class="logo-sub">Audio</span></h1>
-
-        <!-- Realistic guitar waveform -->
-        <svg id="logo-wave-svg" class="waveform" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#FF6B35"/>
-              <stop offset="50%" stop-color="#FF8C5A"/>
-              <stop offset="100%" stop-color="#FF6B35"/>
-            </linearGradient>
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur"/>
-              <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-          <polyline id="guitar-wave" fill="none" stroke="url(#wave-gradient)" stroke-width="2.8" filter="url(#glow)" stroke-linecap="round" stroke-linejoin="round"></polyline>
-        </svg>
       </div>
 
       <nav class="main-nav" aria-label="Main navigation">
@@ -46,12 +27,28 @@
   <main>
     <section class="hero">
       <div class="container hero-inner">
-        <div>
-          <h1>Boutique Tone. Forged to Last.</h1>
-          <p>Hand-tested in East London, South Africa. Premium guitar pedals built for recording and stage. Limited runs. Global shipping.</p>
-          <a class="btn" href="products.html">Shop Pedals</a>
-        </div>
-        <img src="assets/img/hero.jpg" alt="SignalForge Audio pedals lineup" />
+        <img src="assets/img/guitar-left.png" alt="Guitar and pedal illustration" class="hero-side-img left-img"/>
+        
+        <!-- Waveform SVG between the two images -->
+        <svg id="hero-wave-svg" class="hero-waveform" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#FFC35B"/>
+              <stop offset="50%" stop-color="#FF8C00"/>
+              <stop offset="100%" stop-color="#FFC35B"/>
+            </linearGradient>
+            <filter id="wave-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <polyline id="wave-main" fill="none" stroke="url(#wave-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wave-glow)"></polyline>
+        </svg>
+
+        <img src="assets/img/amp-right.png" alt="Amp and speaker illustration" class="hero-side-img right-img"/>
       </div>
     </section>
 
@@ -70,8 +67,8 @@
       </article>
     </section>
 
-    <section class="products-preview container">
-      <h2>Featured Pedals</h2>
+    <section class="products-preview container" aria-labelledby="products-heading">
+      <h2 id="products-heading">Featured Pedals</h2>
       <div id="featured-grid" class="grid"></div>
       <div class="center">
         <a class="btn-outline" href="products.html">View All Products</a>
@@ -95,50 +92,38 @@
     </div>
   </footer>
 
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/shop.js" defer></script>
+
   <script>
-  // 🎸 Realistic Guitar Wave Animation — dynamic, spiky, musical
+  // Hero waveform animation
   (function(){
-    const svg = document.getElementById('logo-wave-svg');
-    const wave = document.getElementById('guitar-wave');
+    const SAMPLES = 200;
     const WIDTH = 1000;
-    const HEIGHT = 120;
-    const BASE_Y = HEIGHT / 2;
-    const POINTS = 160;
-    const AMP = 28;
-    const NOISE = 10;
-
-    const xs = Array.from({length: POINTS}, (_, i) => (i / (POINTS - 1)) * WIDTH);
-
+    const BASE_Y = 100;
+    const AMP = 40;
+    const FREQ = 1.8;
+    const SPEED = 0.1;
+    const svg = document.getElementById('hero-wave-svg');
+    const wave = document.getElementById('wave-main');
     let t = 0;
-    const randomPhase = () => Math.random() * Math.PI * 2;
 
-    function guitarWaveform(time){
-      const points = [];
-      for (let i = 0; i < POINTS; i++) {
-        const x = xs[i];
-        // Blend multiple fast and slow harmonics
-        const fundamental = Math.sin((x / WIDTH) * 8 * Math.PI + time * 2);
-        const harmonic1 = Math.sin((x / WIDTH) * 30 * Math.PI + time * 6);
-        const harmonic2 = Math.sin((x / WIDTH) * 60 * Math.PI + time * 9);
-        const envelope = Math.exp(-Math.pow((x - WIDTH/2) / (WIDTH/3), 2)); // more energy in center
-        const transient = (Math.random() < 0.01) ? Math.random() * AMP * 2 : 0;
-        const y = BASE_Y + (fundamental * AMP + harmonic1 * 8 + harmonic2 * 3 + transient) * envelope + (Math.random() - 0.5) * NOISE;
-        points.push(`${x.toFixed(2)},${y.toFixed(2)}`);
-      }
-      return points.join(' ');
+    const xs = Array.from({length:SAMPLES+1}, (_,i) => (i/SAMPLES)*WIDTH);
+
+    function animateWave(){
+      const points = xs.map((x,i)=>{
+        const nx = i/SAMPLES;
+        const y = BASE_Y + AMP*Math.sin((nx*FREQ*2*Math.PI) + t) 
+                  + AMP*0.35*Math.sin((nx*FREQ*4*Math.PI) + t*1.8)
+                  + AMP*0.15*Math.sin((nx*FREQ*8*Math.PI) + t*3.5);
+        return `${x},${y.toFixed(2)}`;
+      }).join(' ');
+
+      wave.setAttribute('points', points);
+      t += SPEED;
+      requestAnimationFrame(animateWave);
     }
-
-    function animate(){
-      t += 0.03;
-      const path = guitarWaveform(t);
-      wave.setAttribute('points', path);
-      requestAnimationFrame(animate);
-    }
-
-    // init
-    wave.setAttribute('points', xs.map(x => `${x},${BASE_Y}`).join(' '));
-    requestAnimationFrame(animate);
-
+    animateWave();
     document.getElementById('year').textContent = new Date().getFullYear();
   })();
   </script>
