@@ -36,18 +36,18 @@ body{
 .hero-inner{display:flex;justify-content:center;align-items:center;gap:12px;position:relative;width:100%;}
 
 /* Hero Images */
-.hero-side-img{height:90px;max-width:75px;object-fit:contain;}
+.hero-side-img{height:45px;max-width:37.5px;object-fit:contain;} /* 50% size */
 .left-img{margin-right:8px;}
 .right-img{margin-left:8px;}
 
 /* Waveform */
-.hero-waveform{flex:1;height:150px;overflow:visible;pointer-events:none;}
+.hero-waveform{flex:1;height:75px;overflow:visible;pointer-events:none;} /* 50% height */
 .hero-waveform polyline{stroke-linecap:round;stroke-linejoin:round;}
 
 /* Hero Slogan */
 .hero-content{
   position:absolute;
-  top:120px;
+  top:85px;
   width:100%;
   text-align:center;
   pointer-events:none;
@@ -58,14 +58,3 @@ body{
   font-weight:500;
   color:var(--accent);
   margin:0;
-  letter-spacing:0.5px;
-}
-
-/* Features */
-.features{display:flex;gap:18px;justify-content:space-between;padding:36px 0;flex-wrap:wrap;}
-.features article{flex:1;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:10px;min-width:250px;}
-.features h3{margin-bottom:10px;}
-
-/* Grid / products */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
-.card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));padding:14px
