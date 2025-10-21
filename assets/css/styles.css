@@ -1,7 +1,7 @@
 :root{
   --bg:#0B0C0D;
-  --accent:#FFD84B;
-  --accent-dark:#FFCC33;
+  --accent:#FFD94F;
+  --accent-dark:#FFB800;
   --muted:#9aa0a6;
   --text:#E6EEF3;
   --maxw:1200px;
@@ -20,27 +20,79 @@ body{
 .container{max-width:var(--maxw);margin:0 auto;padding:22px}
 
 /* Header */
-.site-header{padding:20px 0;display:flex;flex-direction:column;align-items:center;}
-.header-inner{display:flex;width:100%;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+.site-header{
+  padding:20px 0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.header-inner{
+  display:flex;
+  width:100%;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+}
 .brand{text-align:center;}
 .logo-text{font-size:48px;font-weight:700;color:var(--text);margin:0;}
 .logo-sub{display:block;font-size:18px;font-weight:400;margin-top:6px;color:var(--muted);}
+
+/* Waveform */
+.waveform{
+  display:block;
+  width:100%;
+  max-width:1000px;
+  height:120px;
+  margin:8px auto 4px auto;
+  overflow:visible;
+  pointer-events:none;
+}
+.waveform polyline{
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
 
 /* Navigation */
 .main-nav{display:flex;gap:18px;align-items:center;margin-top:12px;}
 .main-nav a{color:var(--muted);text-decoration:none;font-weight:600;transition:color 0.2s ease;}
 .main-nav a:hover{color:#ffffff}
-.main-nav .cta{background:var(--accent-dark);color:#111;padding:8px 16px;border-radius:6px;font-weight:700;}
+.main-nav .cta{background:var(--accent-dark);color:#111;padding:8px 16px;border-radius:6px;font-weight:700;transition:transform 0.12s ease, box-shadow 0.12s ease;}
+.main-nav .cta:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(255,200,100,0.3)}
 
 /* Hero */
 .hero{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 0;text-align:center;}
-.hero-inner{display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;}
-.hero-slogan{font-size:28px;margin:0 0 12px;}
-.hero p{max-width:640px;margin-bottom:18px;font-size:17px;}
-.btn{display:inline-block;background:var(--accent);color:#111;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700;transition: transform 0.12s ease, box-shadow 0.12s ease;box-shadow: 0 6px 18px rgba(255,216,75,0.12);}
-.btn:hover{transform:translateY(-3px);box-shadow: 0 10px 28px rgba(255,216,75,0.18);}
-.btn-outline{border:2px solid var(--accent);color:var(--accent);padding:10px 16px;border-radius:8px;text-decoration:none;transition: background 0.2s ease, color 0.2s ease;}
-.btn-outline:hover{background:var(--accent);color:#111;}
+.hero-inner{max-width:720px;}
+.hero-slogan{font-size:28px;margin-bottom:14px;line-height:1.3;}
+.hero p{font-size:16px;margin-bottom:18px;}
+
+/* Buttons */
+.btn{
+  display:inline-block;
+  background:var(--accent);
+  color:#111;
+  padding:12px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:700;
+  transition:transform 0.12s ease, box-shadow 0.12s ease;
+  box-shadow:0 6px 18px rgba(255,200,100,0.15);
+}
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(255,200,100,0.25);
+}
+.btn-outline{
+  border:2px solid var(--accent);
+  color:var(--accent);
+  padding:10px 16px;
+  border-radius:8px;
+  text-decoration:none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.btn-outline:hover{
+  background:var(--accent);
+  color:#111;
+}
 
 /* Features */
 .features{display:flex;gap:18px;justify-content:space-between;padding:36px 0;flex-wrap:wrap;}
@@ -48,8 +100,5 @@ body{
 .features h3{margin-bottom:10px;}
 
 /* Grid / products */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px;}
-.card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));padding:14px;border-radius:10px;transition:transform 0.18s ease, box-shadow 0.18s ease;}
-.card:hover{transform:translateY(-6px);box-shadow: 0 14px 36px rgba(0,0,0,0.55);}
-.card img{width:100%;height:160px;object-fit:cover;border-radius:6px}
-.card
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:10px;transition:transform 0
