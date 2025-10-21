@@ -21,9 +21,9 @@
               <stop offset="100%" stop-color="#FFD84B"/>
             </linearGradient>
             <filter id="wave-glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feGaussianBlur stdDeviation="3" result="blur"/>
               <feMerge>
-                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="blur"/>
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
@@ -88,23 +88,26 @@
     const SAMPLES = 200;
     const WIDTH = 1000;
     const BASE_Y = 75;
-    const MAX_AMP = 50;
+    const MAX_AMP = 55; 
     const BPM = 140;
     const wave = document.getElementById('wave-main');
     let t = 0;
 
     const xs = Array.from({length:SAMPLES+1}, (_,i)=> (i/SAMPLES)*WIDTH);
 
-    // Interactive control variables
-    let userAmplitude = 1; // default
+    let userAmplitude = 1; // interactive amplitude
+
+    // Amplitude envelope synced to BPM
     function amplitudeEnvelope(time){
       return (0.6 + 0.4 * Math.sin(time*2*Math.PI/(60/BPM))) * userAmplitude;
     }
 
+    // Distorted guitar wave with fuzz/overdrive effect
     function distortedGuitarWave(nx, env){
-      let y = Math.sin(nx*4*Math.PI + t*3) * 0.5;
-      y += Math.sin(nx*16*Math.PI + t*12) * 0.25;
-      y += (Math.random()-0.5) * 0.2;
+      let y = Math.sin(nx*4*Math.PI + t*2.5) * 0.6;           // base
+      y += Math.sin(nx*16*Math.PI + t*10) * 0.25;            // high harmonic spikes
+      y += Math.sin(nx*32*Math.PI + t*28) * 0.08;            // tiny fuzziness
+      y += (Math.random()-0.5) * 0.12;                       // random grain
       return y * env;
     }
 
@@ -112,28 +115,28 @@
       const env = amplitudeEnvelope(t);
       const points = xs.map((x,i)=>{
         const nx = i/SAMPLES;
-        const y = BASE_Y + distortedGuitarWave(nx, env)*MAX_AMP;
+        const y = BASE_Y + distortedGuitarWave(nx, env) * MAX_AMP;
         return `${x},${y.toFixed(2)}`;
       }).join(' ');
 
       wave.setAttribute('points', points);
-      t += 0.02; // slow horizontal speed
+      t += 0.015; // slow horizontal motion
       requestAnimationFrame(animateWave);
     }
 
-    // Mouse / touch interaction
+    // Mouse / touch interactivity
     function updateAmplitude(e){
       let ratio = 0.8;
       if(e.type.startsWith('mouse')){
         const rect = wave.getBoundingClientRect();
         const y = e.clientY - rect.top;
-        ratio = 1 - Math.min(Math.max(y/rect.height,0),1); // higher cursor = higher amplitude
+        ratio = 1 - Math.min(Math.max(y/rect.height,0),1);
       } else if(e.type.startsWith('touch')){
         const rect = wave.getBoundingClientRect();
         const y = e.touches[0].clientY - rect.top;
         ratio = 1 - Math.min(Math.max(y/rect.height,0),1);
       }
-      userAmplitude = 0.6 + 0.4*ratio; // minimum 0.6, max 1.0
+      userAmplitude = 0.6 + 0.4*ratio;
     }
 
     document.addEventListener('mousemove', updateAmplitude);
