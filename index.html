@@ -15,8 +15,8 @@
         <!-- Brand text -->
         <h1 class="logo-text">SignalForge <span class="logo-sub">Audio</span></h1>
 
-        <!-- Realistic multi-layer audio waveform SVG -->
-        <svg id="logo-wave-svg" class="waveform" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+        <!-- Realistic multi-layer audio waveform SVG (polylines filled by JS) -->
+        <svg id="logo-wave-svg" class="waveform" viewBox="0 0 1000 140" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stop-color="#FF6B35"/>
@@ -24,8 +24,8 @@
               <stop offset="100%" stop-color="#FF6B35"/>
             </linearGradient>
             <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#FF8C5A" stop-opacity="0.8"/>
-              <stop offset="100%" stop-color="#FFB08A" stop-opacity="0.8"/>
+              <stop offset="0%" stop-color="#FF8C5A" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#FFB08A" stop-opacity="0.9"/>
             </linearGradient>
             <filter id="wf-glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -36,10 +36,10 @@
             </filter>
           </defs>
 
-          <!-- Three layered polylines: low (thick), mid (medium), high (thin) -->
+          <!-- Three layered polylines: low, mid, high -->
           <polyline id="wave-low" fill="none" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wf-glow)"></polyline>
-          <polyline id="wave-mid" fill="none" stroke="url(#g2)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"></polyline>
-          <polyline id="wave-high" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"></polyline>
+          <polyline id="wave-mid" fill="none" stroke="url(#g2)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.98"></polyline>
+          <polyline id="wave-high" fill="none" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"></polyline>
         </svg>
       </div>
 
@@ -108,117 +108,6 @@
 
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/shop.js" defer></script>
-
-  <!-- Realistic waveform animation script -->
-  <script>
-  (function(){
-    // Config - tune these for more/less intensity
-    const SAMPLES = 180;            // number of points across the width (higher = smoother)
-    const WIDTH = 1000;             // viewBox width
-    const BASE_Y = 60;              // center y position
-    const LOW_AMP = 22;             // amplitude low layer
-    const MID_AMP = 12;             // amplitude mid layer
-    const HIGH_AMP = 6;             // amplitude high layer
-    const LOW_FREQ = 0.6;           // base frequencies
-    const MID_FREQ = 1.8;
-    const HIGH_FREQ = 6.5;
-    const TRANSIENT_PROB = 0.008;   // probability per frame to trigger a transient spike
-    const TRANSIENT_DECAY = 0.96;   // how fast transient decays
-    const NOISE = 1.2;              // small random noise factor
-
-    const svg = document.getElementById('logo-wave-svg');
-    const waveLow = document.getElementById('wave-low');
-    const waveMid = document.getElementById('wave-mid');
-    const waveHigh = document.getElementById('wave-high');
-
-    // keep transient state
-    let transient = 0;
-    let t = 0;
-
-    // precompute x positions
-    const xs = new Array(SAMPLES+1);
-    for (let i=0;i<=SAMPLES;i++){
-      xs[i] = (i / SAMPLES) * WIDTH;
-    }
-
-    function randSign() { return Math.random() < 0.5 ? -1 : 1; }
-
-    // create a seeded-ish jitter per sample to break perfect sin symmetry
-    const jitterPhases = new Array(SAMPLES+1).fill(0).map(() => Math.random()*Math.PI*2);
-
-    function buildPoints(amp, freq, speed, phaseOffset, extraFreqMult=1) {
-      const pts = [];
-      for (let i=0; i<=SAMPLES; i++){
-        const x = xs[i];
-        // normalized x for spatial variation
-        const nx = i / SAMPLES;
-        // sum of sines at different harmonics to create complex waveform
-        const y =
-          BASE_Y
-          + amp * Math.sin((nx * freq * Math.PI * 2) + (t * speed) + phaseOffset)
-          + (amp*0.45) * Math.sin((nx * freq * Math.PI * 4) + (t * speed * 1.8) + phaseOffset*1.7)  // harmonic
-          + (amp*0.15) * Math.sin((nx * freq * Math.PI * 8) + (t * speed * 3.5) + phaseOffset*2.9)  // high harmonic
-          + transient * amp * (1 - Math.abs(0.5 - nx) * 2)  // transient localized toward middle
-          + (Math.sin(jitterPhases[i] + t*0.7) * (NOISE)); // subtle noise/jitter
-        pts.push(Math.round(x) + ',' + y.toFixed(2));
-      }
-      return pts.join(' ');
-    }
-
-    function maybeTriggerTransient(){
-      if (Math.random() < TRANSIENT_PROB){
-        // create a random transient/peak (simulates pick/attack)
-        transient += 0.9 + Math.random()*1.6;
-      }
-    }
-
-    function animate(){
-      // trigger transient rarely
-      maybeTriggerTransient();
-
-      // decay transient
-      transient *= TRANSIENT_DECAY;
-      if (transient < 0.001) transient = 0;
-
-      // increase time
-      t += 0.06;
-
-      // compute different layer points
-      const pLow = buildPoints(LOW_AMP, LOW_FREQ, 0.7, 0.5);
-      const pMid = buildPoints(MID_AMP, MID_FREQ, 1.8, 1.2);
-      const pHigh = buildPoints(HIGH_AMP, HIGH_FREQ, 3.8, 2.2);
-
-      // write to DOM
-      waveLow.setAttribute('points', pLow);
-      waveMid.setAttribute('points', pMid);
-      waveHigh.setAttribute('points', pHigh);
-
-      requestAnimationFrame(animate);
-    }
-
-    // Initialize with flat lines then start anim
-    waveLow.setAttribute('points', xs.map(x => x + ',' + BASE_Y).join(' '));
-    waveMid.setAttribute('points', xs.map(x => x + ',' + BASE_Y).join(' '));
-    waveHigh.setAttribute('points', xs.map(x => x + ',' + BASE_Y).join(' '));
-
-    // small entrance: quick subtle amplitude ramp
-    let ramp = 0;
-    const rampFrames = 40;
-    function rampIn(){
-      ramp++;
-      if (ramp < rampFrames){
-        // small temporary increase to amps to avoid flat start
-        requestAnimationFrame(rampIn);
-      } else {
-        requestAnimationFrame(animate);
-      }
-    }
-    rampIn();
-
-    // accessibility: expose aria-hidden false when ready (visual only)
-    svg.setAttribute('aria-hidden', 'true');
-    document.getElementById('year').textContent = new Date().getFullYear();
-  })();
-  </script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
