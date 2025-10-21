@@ -4,9 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SignalForge Audio — Boutique Guitar Pedals</title>
-  <meta name="description" content="SignalForge Audio — boutique boutique guitar effect pedals. Hand-tested in South Africa. Premium tone, limited runs." />
+  <meta name="description" content="SignalForge Audio — boutique guitar effect pedals. Hand-tested in South Africa. Premium tone, limited runs." />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="icon" href="assets/img/logo.svg" />
+  
   <!-- Structured data -->
   <script type="application/ld+json">
   {
@@ -20,9 +21,38 @@
   </script>
 </head>
 <body>
+  <!-- Header with Animated Multi-Layer SVG Logo -->
   <header class="site-header">
-    <div class="container">
-      <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="SignalForge Audio logo" /></a>
+    <div class="container header-inner">
+      <!-- Animated SVG Logo -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="500" height="120" viewBox="0 0 500 120">
+        <!-- Background -->
+        <rect width="500" height="120" fill="#0b0c0d"/>
+        <!-- Static Text -->
+        <text x="20" y="70" font-family="Montserrat, sans-serif" font-size="40" font-weight="700" fill="#ffffff">SIGNAL</text>
+        <text x="200" y="70" font-family="Montserrat, sans-serif" font-size="40" font-weight="700" fill="#ffffff">RGE</text>
+        <text x="160" y="100" font-family="Montserrat, sans-serif" font-size="18" font-weight="300" fill="#e6eef3">Audio</text>
+        <!-- Back Waveform Layer -->
+        <polyline id="wave-back" points="0,25 5,15 10,30 15,10 20,25 25,15 30,25 35,20 40,25"
+                  stroke="#ff6b35" stroke-width="2" fill="none" opacity="0.5">
+          <animate attributeName="points" dur="2.5s" repeatCount="indefinite"
+            values="
+              0,25 5,15 10,30 15,10 20,25 25,15 30,25 35,20 40,25;
+              0,20 5,25 10,15 15,30 20,10 25,25 30,15 35,25 40,20;
+              0,25 5,15 10,30 15,10 20,25 25,15 30,25 35,20 40,25"/>
+        </polyline>
+        <!-- Front Waveform Layer -->
+        <polyline id="wave-front" points="0,20 5,10 10,35 15,5 20,30 25,10 30,25 35,15 40,25"
+                  stroke="#ffffff" stroke-width="3" fill="none">
+          <animate attributeName="points" dur="2s" repeatCount="indefinite"
+            values="
+              0,20 5,10 10,35 15,5 20,30 25,10 30,25 35,15 40,25;
+              0,15 5,25 10,10 15,35 20,5 25,30 30,10 35,25 40,15;
+              0,20 5,10 10,35 15,5 20,30 25,10 30,25 35,15 40,25"/>
+        </polyline>
+      </svg>
+
+      <!-- Navigation -->
       <nav class="main-nav" aria-label="Main navigation">
         <a href="products.html">Products</a>
         <a href="about.html">About</a>
@@ -32,18 +62,20 @@
     </div>
   </header>
 
+  <!-- Hero Section -->
   <main>
     <section class="hero">
       <div class="container hero-inner">
         <div>
           <h1>Boutique Tone. Forged to Last.</h1>
           <p>Hand-tested in East London, South Africa. Premium guitar pedals built for recording and stage. Limited runs. Global shipping.</p>
-          <a class="btn" href="products.html">Shop Pedals</a>
+          <a class="btn btn-primary" href="products.html">Shop Pedals — Limited Stock!</a>
         </div>
         <img src="assets/img/hero.jpg" alt="SignalForge pedals lineup" />
       </div>
     </section>
 
+    <!-- Features -->
     <section class="features container">
       <article>
         <h3>Premium Components</h3>
@@ -59,6 +91,7 @@
       </article>
     </section>
 
+    <!-- Products Preview -->
     <section class="products-preview container" aria-labelledby="products-heading">
       <h2 id="products-heading">Featured Pedals</h2>
       <div id="featured-grid" class="grid">
@@ -69,12 +102,16 @@
       </div>
     </section>
 
+    <!-- Why SignalForge -->
     <section class="build-for-profit container">
       <h2>Why SignalForge</h2>
       <p>Targeted at recording guitarists who pay for premium tone. Small-batch runs, artist collaborations, and limited edition finishes — high margin, desirable products.</p>
+      <p class="stock-warning">Limited runs — secure your pedal before they sell out!</p>
+      <p class="guarantee">30-day money-back guarantee • 1-year warranty • Worldwide shipping</p>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <small>© <span id="year"></span> SignalForge Audio — Designed & hand-tested in East London, South Africa.</small>
@@ -88,5 +125,10 @@
 
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/shop.js" defer></script>
+
+  <!-- Optional: Set current year in footer -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
