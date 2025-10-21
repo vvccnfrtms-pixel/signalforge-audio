@@ -1,0 +1,26 @@
+[
+  {
+    "id": "sf-01",
+    "title": "Forge Distortion Mk I",
+    "short": "Warm, focused distortion — designed for studio clarity and recorded grit.",
+    "long": "Analog-hybrid distortion using premium transistors and hand-selected components for harmonic richness. Buffered bypass, true tone control, limited to 150 units per run. Hand-tested in East London.",
+    "price": "229",
+    "currency": "USD",
+    "image": "assets/img/placeholder-product.jpg",
+    "featured": true,
+    "paypal_link": "https://www.paypal.com/paypalme/yourlink/229",
+    "gumroad_link": ""
+  },
+  {
+    "id": "sf-02",
+    "title": "Anvil Reverb",
+    "short": "Compact studio reverb with spring & plate emulations for guitar recording.",
+    "long": "Digital-engineered spring and plate algorithms tuned for electric guitars. Modular firmware updates, command pedal option. Limited edition finish.",
+    "price": "259",
+    "currency": "USD",
+    "image": "assets/img/placeholder-product.jpg",
+    "featured": true,
+    "paypal_link": "",
+    "gumroad_link": "https://gumroad.com/l/yourproduct"
+  }
+]
