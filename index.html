@@ -26,8 +26,6 @@
   <main>
     <section class="hero">
       <div class="container hero-inner">
-        <img src="assets/img/guitar-left.png" alt="Guitar and pedal" class="hero-side-img left-img"/>
-        
         <svg id="hero-wave-svg" class="hero-waveform" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
@@ -45,8 +43,6 @@
           </defs>
           <polyline id="wave-main" fill="none" stroke="url(#wave-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wave-glow)"></polyline>
         </svg>
-
-        <img src="assets/img/amp-right.png" alt="Amp and speaker" class="hero-side-img right-img"/>
       </div>
     </section>
 
@@ -98,28 +94,31 @@
     const SAMPLES = 200;
     const WIDTH = 1000;
     const BASE_Y = 100;
-    const MAX_AMP = 45;
-    const svg = document.getElementById('hero-wave-svg');
+    const MAX_AMP = 40; // reduced for better distortion look
+    const BPM = 140;
+    const beatPeriod = 60 / BPM;
     const wave = document.getElementById('wave-main');
     let t=0;
 
     const xs = Array.from({length:SAMPLES+1}, (_,i)=> (i/SAMPLES)*WIDTH);
 
-    function distortedY(nx){
-      let y = Math.sin(nx*6*Math.PI + t*1.2);
-      y += 0.3*Math.sin(nx*20*Math.PI + t*4.5);
-      y += (Math.random()-0.5)*0.15;
+    function distortedGuitarWave(nx){
+      // simulate distorted guitar: jagged, fuzzed waveform with harmonic content
+      let y = Math.sin(nx*4*Math.PI + t*6) * 0.6;  // base sine
+      y += Math.sin(nx*12*Math.PI + t*18) * 0.2;   // high harmonic
+      y += (Math.random()-0.5)*0.15;              // noise / fuzz
+      y += Math.sin(t*2*Math.PI/beatPeriod) * 0.25; // rhythmic pulsing (BPM)
       return y;
     }
 
     function animateWave(){
       const points = xs.map((x,i)=>{
         const nx = i/SAMPLES;
-        const y = BASE_Y + distortedY(nx)*MAX_AMP;
+        const y = BASE_Y + distortedGuitarWave(nx)*MAX_AMP;
         return `${x},${y.toFixed(2)}`;
       }).join(' ');
       wave.setAttribute('points', points);
-      t += 0.1 + 0.03*Math.sin(t);
+      t += 0.08;
       requestAnimationFrame(animateWave);
     }
 
