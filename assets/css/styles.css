@@ -14,7 +14,9 @@ html,body{height:100%}
 body{
   margin:0;
   color:var(--text);
-  background:linear-gradient(180deg,#050607 0%, #0b0d0f 100%);
+  background:
+    radial-gradient(ellipse at 10% 10%, rgba(255,255,255,0.02), transparent 8%),
+    linear-gradient(180deg,#050607 0%, #0b0d0f 100%);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   line-height:1.5;
@@ -24,10 +26,11 @@ body{
 /* Header */
 .site-header{
   padding:20px 0;
-  background:var(--card);
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.06));
   display:flex;
   flex-direction:column;
   align-items:center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
 }
 .header-inner{
   display:flex;
@@ -36,28 +39,34 @@ body{
   align-items:center;
   flex-wrap:wrap;
 }
-.brand{text-align:center;}
+
+/* Branding */
+.brand{text-align:center; width:100%;}
 .logo-text{
   font-size:48px;
   font-weight:700;
   color:var(--text);
   margin:0;
+  letter-spacing: -0.5px;
 }
 .logo-sub{
   display:block;
-  font-size:20px;
+  font-size:18px;
   font-weight:400;
+  margin-top:6px;
   color:var(--muted);
-  margin-top:4px;
+  letter-spacing:0.3px;
 }
 
-/* Waveform styling */
+/* Waveform container */
 .waveform{
   display:block;
   width:100%;
-  max-width:800px;
-  height:60px;
-  margin:12px auto 0 auto;
+  max-width:1000px;
+  height:120px;
+  margin:10px auto 2px auto;
+  overflow:visible;
+  pointer-events:none;
 }
 .waveform polyline{
   stroke-linecap:round;
@@ -69,13 +78,13 @@ body{
   display:flex;
   gap:18px;
   align-items:center;
-  margin-top:12px;
+  margin-top:8px;
 }
 .main-nav a{
   color:var(--muted);
   text-decoration:none;
   font-weight:600;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 .main-nav a:hover{color:#ffffff}
 .main-nav .cta{
@@ -88,7 +97,7 @@ body{
 
 /* Hero */
 .hero{
-  padding:60px 0;
+  padding:56px 0;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -97,7 +106,7 @@ body{
 .hero-inner{
   display:flex;
   flex-direction:column;
-  gap:24px;
+  gap:22px;
   align-items:center;
   justify-content:center;
 }
@@ -107,33 +116,37 @@ body{
   object-fit:cover;
 }
 .hero h1{
-  font-size:38px;
-  margin:0 0 16px;
+  font-size:36px;
+  margin:0 0 12px;
   line-height:1.2;
 }
 .hero p{
-  font-size:18px;
-  margin-bottom:20px;
-  max-width:600px;
+  font-size:17px;
+  margin-bottom:18px;
+  max-width:640px;
 }
 .btn, .btn-primary{
   display:inline-block;
   background:var(--accent);
   color:#111;
-  padding:14px 20px;
+  padding:12px 18px;
   border-radius:8px;
   text-decoration:none;
   font-weight:700;
-  transition: background 0.3s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  box-shadow: 0 6px 18px rgba(255,107,53,0.12);
 }
-.btn:hover, .btn-primary:hover{background:#e55b2a;}
+.btn:hover, .btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow: 0 10px 28px rgba(255,107,53,0.16);
+}
 .btn-outline{
   border:2px solid var(--accent);
   color:var(--accent);
   padding:10px 16px;
   border-radius:8px;
   text-decoration:none;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 .btn-outline:hover{
   background:var(--accent);
@@ -145,49 +158,46 @@ body{
   display:flex;
   gap:18px;
   justify-content:space-between;
-  padding:40px 0;
+  padding:36px 0;
   flex-wrap:wrap;
 }
 .features article{
   flex:1;
-  background:rgba(255,255,255,.02);
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   padding:18px;
   border-radius:10px;
   min-width:250px;
 }
-.features h3{margin-bottom:12px}
+.features h3{margin-bottom:10px;}
 
-/* Products grid */
+/* Grid / products */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:18px;
-  margin-top:18px
+  margin-top:18px;
 }
 .card{
   background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
   padding:14px;
   border-radius:10px;
-  transition:transform 0.3s ease;
+  transition:transform 0.18s ease, box-shadow 0.18s ease;
 }
-.card:hover{transform:translateY(-4px);}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.55);
+}
 .card img{width:100%;height:160px;object-fit:cover;border-radius:6px}
 .card h4{margin:8px 0 6px}
 .card p{color:var(--muted);font-size:14px}
 
-/* Build section */
+/* Build for profit */
 .build-for-profit{
   padding:36px 0;
   text-align:center;
 }
-.build-for-profit h2{
-  font-size:28px;
-  margin-bottom:14px;
-}
-.build-for-profit p{
-  max-width:700px;
-  margin:0 auto 12px;
-}
+.build-for-profit h2{font-size:28px;margin-bottom:14px;}
+.build-for-profit p{max-width:700px;margin:0 auto 12px;}
 
 /* Footer */
 .site-footer{
@@ -197,16 +207,20 @@ body{
   margin-top:40px;
   text-align:center;
 }
-.site-footer .social{
-  margin-top:10px;
-}
-.site-footer .social a{
-  margin:0 8px;
-  color:var(--muted);
-  text-decoration:none;
-  font-weight:600;
-}
+.site-footer .social{margin-top:10px;}
+.site-footer .social a{margin:0 8px;color:var(--muted);text-decoration:none;font-weight:600;}
 .site-footer .social a:hover{color:#ffffff;}
 
 .center{text-align:center}
 .muted{color:var(--muted)}
+
+/* Responsive tweaks */
+@media (min-width:900px){
+  .hero-inner{flex-direction:row; align-items:center; justify-content:space-between;}
+  .brand{text-align:center;}
+}
+@media (max-width:420px){
+  .logo-text{font-size:30px;}
+  .waveform{height:70px;}
+  .hero h1{font-size:28px;}
+}
