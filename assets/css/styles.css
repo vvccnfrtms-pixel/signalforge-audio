@@ -63,8 +63,8 @@ body{
   display:block;
   width:100%;
   max-width:1000px;
-  height:120px;
-  margin:10px auto 2px auto;
+  height:140px;
+  margin:6px auto 2px auto;
   overflow:visible;
   pointer-events:none;
 }
@@ -221,6 +221,6 @@ body{
 }
 @media (max-width:420px){
   .logo-text{font-size:30px;}
-  .waveform{height:70px;}
+  .waveform{height:90px;}
   .hero h1{font-size:28px;}
 }
