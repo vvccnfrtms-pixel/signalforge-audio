@@ -13,37 +13,27 @@
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "SignalForge Audio",
-    "url": "https://signalforgeaudio.github.io",
-    "logo": "https://yourdomain.com/assets/img/logo.svg",
+    "url": "https://vvccnfrtms-pixel.github.io/signalforge-audio",
+    "logo": "https://vvccnfrtms-pixel.github.io/signalforge-audio/assets/img/logo.svg",
     "sameAs": []
   }
   </script>
 
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-  <!-- Header with Corrected Animated SVG Logo -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
         <svg xmlns="http://www.w3.org/2000/svg" width="500" height="120" viewBox="0 0 500 120">
-          <!-- Background -->
           <rect width="500" height="120" fill="#0b0c0d"/>
-          
-          <!-- Brand Name -->
           <text x="20" y="60" font-family="Montserrat, sans-serif" font-size="40" font-weight="700" fill="#ffffff">
             SignalForge
           </text>
-          
-          <!-- Subtext -->
           <text x="20" y="90" font-family="Montserrat, sans-serif" font-size="18" font-weight="300" fill="#e6eef3">
             Audio
           </text>
-
-          <!-- Waveform Group: positioned behind brand name -->
           <g transform="translate(0, 50)">
-            <!-- Back Wave -->
             <polyline id="wave-back" points="0,25 5,15 10,30 15,10 20,25 25,15 30,25 35,20 40,25" 
               stroke="#ff6b35" stroke-width="2" fill="none" opacity="0.5">
               <animate attributeName="points" dur="2.5s" repeatCount="indefinite" 
@@ -52,8 +42,6 @@
                 0,20 5,25 10,15 15,30 20,10 25,25 30,15 35,25 40,20;
                 0,25 5,15 10,30 15,10 20,25 25,15 30,25 35,20 40,25"/>
             </polyline>
-
-            <!-- Front Wave -->
             <polyline id="wave-front" points="0,20 5,10 10,35 15,5 20,30 25,10 30,25 35,15 40,25" 
               stroke="#ffffff" stroke-width="3" fill="none">
               <animate attributeName="points" dur="2s" repeatCount="indefinite" 
@@ -65,8 +53,6 @@
           </g>
         </svg>
       </div>
-
-      <!-- Navigation -->
       <nav class="main-nav" aria-label="Main navigation">
         <a href="products.html">Products</a>
         <a href="about.html">About</a>
@@ -76,7 +62,6 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
   <main>
     <section class="hero">
       <div class="container hero-inner">
@@ -89,7 +74,6 @@
       </div>
     </section>
 
-    <!-- Features -->
     <section class="features container">
       <article>
         <h3>Premium Components</h3>
@@ -105,7 +89,6 @@
       </article>
     </section>
 
-    <!-- Products Preview -->
     <section class="products-preview container" aria-labelledby="products-heading">
       <h2 id="products-heading">Featured Pedals</h2>
       <div id="featured-grid" class="grid">
@@ -116,7 +99,6 @@
       </div>
     </section>
 
-    <!-- Why SignalForge Audio -->
     <section class="build-for-profit container">
       <h2>Why SignalForge Audio</h2>
       <p>Targeted at recording guitarists who pay for premium tone. Small-batch runs, artist collaborations, and limited edition finishes — high margin, desirable products.</p>
@@ -125,7 +107,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <small>© <span id="year"></span> SignalForge Audio — Designed & hand-tested in East London, South Africa.</small>
@@ -139,8 +120,6 @@
 
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/shop.js" defer></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
