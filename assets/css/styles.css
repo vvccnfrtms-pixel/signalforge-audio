@@ -11,40 +11,26 @@
 
 *{box-sizing:border-box}
 html,body{height:100%}
-body{
-  margin:0;
-  color:var(--text);
-  background-color:var(--bg);
-  line-height:1.5;
-}
+body{margin:0;color:var(--text);background-color:var(--bg);line-height:1.5;}
 .container{max-width:var(--maxw);margin:0 auto;padding:22px}
 
 /* Header */
 .site-header{padding:20px 0;display:flex;flex-direction:column;align-items:center;}
 .header-inner{display:flex;width:100%;justify-content:space-between;align-items:center;flex-wrap:wrap;}
 .brand{text-align:center;}
-.logo-text{font-size:48px;font-weight:700;color:var(--text);margin:0;}
-.logo-sub{display:block;font-size:18px;font-weight:400;margin-top:6px;color:var(--muted);}
+.logo-text{font-size:64px;font-weight:700;color:var(--text);margin:0;}
+.logo-sub{display:block;font-size:22px;font-weight:400;margin-top:12px;color:var(--muted);}
+
+/* Waveform and images */
+.wave-container{display:flex;align-items:center;justify-content:center;margin:16px 0;}
+.wave-img{height:80px;max-width:80px;object-fit:contain;}
+.left-img{margin-right:12px;}
+.right-img{margin-left:12px;}
+.hero-waveform{width:600px;height:80px;flex-shrink:0;overflow:visible;}
+.hero-waveform polyline{stroke-linecap:round;stroke-linejoin:round;}
 
 /* Navigation */
 .main-nav{display:flex;gap:18px;align-items:center;margin-top:12px;}
 .main-nav a{color:var(--muted);text-decoration:none;font-weight:600;transition:color 0.2s ease;}
 .main-nav a:hover{color:#ffffff}
 .main-nav .cta{background:var(--accent-dark);color:#111;padding:8px 16px;border-radius:6px;font-weight:700;}
-
-/* Hero */
-.hero{display:flex;justify-content:center;align-items:center;padding:60px 0;position:relative;}
-.hero-inner{display:flex;justify-content:space-between;align-items:center;width:100%;position:relative;}
-.hero-side-img{height:180px;max-width:150px;object-fit:contain;}
-.left-img{margin-right:16px;}
-.right-img{margin-left:16px;}
-.hero-waveform{flex:1;height:150px;overflow:visible;pointer-events:none;}
-.hero-waveform polyline{stroke-linecap:round;stroke-linejoin:round;}
-
-/* Features */
-.features{display:flex;gap:18px;justify-content:space-between;padding:36px 0;flex-wrap:wrap;}
-.features article{flex:1;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:10px;min-width:250px;}
-.features h3{margin-bottom:10px;}
-
-/* Grid / products */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px
