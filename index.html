@@ -29,8 +29,8 @@
         <!-- Left Image -->
         <img src="assets/img/guitar-left.png" alt="Guitar and pedal" class="hero-side-img left-img"/>
 
-        <!-- Waveform -->
-        <svg id="hero-wave-svg" class="hero-waveform" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
+        <!-- Waveform (50% width and height) -->
+        <svg id="hero-wave-svg" class="hero-waveform" viewBox="0 0 500 100" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stop-color="#FFC35B"/>
@@ -38,14 +38,14 @@
               <stop offset="100%" stop-color="#FFC35B"/>
             </linearGradient>
             <filter id="wave-glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
               <feMerge>
                 <feMergeNode in="coloredBlur"/>
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
           </defs>
-          <polyline id="wave-main" fill="none" stroke="url(#wave-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wave-glow)"></polyline>
+          <polyline id="wave-main" fill="none" stroke="url(#wave-gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#wave-glow)"></polyline>
         </svg>
 
         <!-- Slogan -->
@@ -104,9 +104,9 @@
   <script>
   (function(){
     const SAMPLES = 200;
-    const WIDTH = 1000;
-    const BASE_Y = 100;
-    const MAX_AMP = 45;
+    const WIDTH = 500; // 50% of previous width
+    const BASE_Y = 50; // 50% height
+    const MAX_AMP = 22.5; // 50% height
     const svg = document.getElementById('hero-wave-svg');
     const wave = document.getElementById('wave-main');
     let t=0;
@@ -116,7 +116,7 @@
     function distortedY(nx){
       let y = Math.sin(nx*6*Math.PI + t*1.2);
       y += 0.3*Math.sin(nx*20*Math.PI + t*4.5);
-      y += (Math.random()-0.5)*0.15;
+      y += (Math.random()-0.5)*0.075; // 50% jitter
       return y;
     }
 
