@@ -1,0 +1,8 @@
+<!-- assets/img/logo.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="40" viewBox="0 0 320 80" role="img" aria-label="SignalForge Audio">
+  <rect width="320" height="80" rx="12" fill="#0b0c0d"/>
+  <g transform="translate(18,12)" fill="#ff6b35" font-family="sans-serif" font-weight="700">
+    <text x="0" y="34" font-size="32">Signal</text>
+    <text x="160" y="34" font-size="32" fill="#e6eef3">Forge</text>
+  </g>
+</svg>
