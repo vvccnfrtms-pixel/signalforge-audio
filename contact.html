@@ -4,42 +4,65 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact — SignalForge Audio</title>
+  <meta name="description" content="Contact SignalForge Audio for boutique guitar pedals, collaborations, or inquiries. Hand-tested in East London, South Africa." />
+  <link rel="icon" href="assets/img/logo.svg" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-  <header class="site-header container">
-    <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="Logo" /></a>
-    <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-    </nav>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <svg><!-- Same logo SVG --></svg>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a class="cta" href="products.html">Shop</a>
+      </nav>
+    </div>
   </header>
 
   <main class="container">
-    <h1>Contact</h1>
-    <p>For sales, wholesale, artist collaborations or press: <strong>hello@signalforgeaudio.com</strong></p>
+    <section class="hero">
+      <h1>Contact SignalForge Audio</h1>
+      <p>We’d love to hear from you! For questions about products, collaborations, or custom orders, please fill out the form below or reach us via social media.</p>
+    </section>
 
-    <form id="contact-form" class="contact-form" action="https://formspree.io/f/your-id" method="POST">
-      <label>
-        Your name
-        <input name="name" required />
-      </label>
-      <label>
-        Email
-        <input name="email" type="email" required />
-      </label>
-      <label>
-        Message
-        <textarea name="message" rows="6" required></textarea>
-      </label>
-      <button class="btn" type="submit">Send</button>
-    </form>
+    <section class="contact-form container">
+      <form action="mailto:info@signalforgeaudio.com" method="post" enctype="text/plain">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </section>
+
+    <section class="build-for-profit container">
+      <h2>Stay Connected</h2>
+      <p>Follow us on Instagram, YouTube, and TikTok for the latest pedal releases, demos, and artist collaborations.</p>
+    </section>
   </main>
 
-  <footer class="site-footer container">
-    <small>© <span id="year4"></span> SignalForge Audio</small>
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> SignalForge Audio — Designed & hand-tested in East London, South Africa.</small>
+      <div class="social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="YouTube">YT</a>
+        <a href="#" aria-label="TikTok">TT</a>
+      </div>
+    </div>
   </footer>
 
-  <script>document.querySelectorAll('[id^=year]').forEach(e=>e.textContent=new Date().getFullYear())</script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/shop.js" defer></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
