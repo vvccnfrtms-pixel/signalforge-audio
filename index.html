@@ -12,34 +12,25 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <!-- Brand text -->
         <h1 class="logo-text">SignalForge <span class="logo-sub">Audio</span></h1>
 
-        <!-- Realistic multi-layer audio waveform SVG (polylines filled by JS) -->
-        <svg id="logo-wave-svg" class="waveform" viewBox="0 0 1000 140" preserveAspectRatio="none" aria-hidden="true">
+        <!-- Realistic guitar waveform -->
+        <svg id="logo-wave-svg" class="waveform" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
           <defs>
-            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+            <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stop-color="#FF6B35"/>
-              <stop offset="50%" stop-color="#FF9A6A"/>
+              <stop offset="50%" stop-color="#FF8C5A"/>
               <stop offset="100%" stop-color="#FF6B35"/>
             </linearGradient>
-            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#FF8C5A" stop-opacity="0.9"/>
-              <stop offset="100%" stop-color="#FFB08A" stop-opacity="0.9"/>
-            </linearGradient>
-            <filter id="wf-glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
               <feMerge>
-                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="blur"/>
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
           </defs>
-
-          <!-- Three layered polylines: low, mid, high -->
-          <polyline id="wave-low" fill="none" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wf-glow)"></polyline>
-          <polyline id="wave-mid" fill="none" stroke="url(#g2)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.98"></polyline>
-          <polyline id="wave-high" fill="none" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"></polyline>
+          <polyline id="guitar-wave" fill="none" stroke="url(#wave-gradient)" stroke-width="2.8" filter="url(#glow)" stroke-linecap="round" stroke-linejoin="round"></polyline>
         </svg>
       </div>
 
@@ -79,11 +70,9 @@
       </article>
     </section>
 
-    <section class="products-preview container" aria-labelledby="products-heading">
-      <h2 id="products-heading">Featured Pedals</h2>
-      <div id="featured-grid" class="grid">
-        <!-- populated by JS -->
-      </div>
+    <section class="products-preview container">
+      <h2>Featured Pedals</h2>
+      <div id="featured-grid" class="grid"></div>
       <div class="center">
         <a class="btn-outline" href="products.html">View All Products</a>
       </div>
@@ -106,8 +95,52 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js" defer></script>
-  <script src="assets/js/shop.js" defer></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+  // 🎸 Realistic Guitar Wave Animation — dynamic, spiky, musical
+  (function(){
+    const svg = document.getElementById('logo-wave-svg');
+    const wave = document.getElementById('guitar-wave');
+    const WIDTH = 1000;
+    const HEIGHT = 120;
+    const BASE_Y = HEIGHT / 2;
+    const POINTS = 160;
+    const AMP = 28;
+    const NOISE = 10;
+
+    const xs = Array.from({length: POINTS}, (_, i) => (i / (POINTS - 1)) * WIDTH);
+
+    let t = 0;
+    const randomPhase = () => Math.random() * Math.PI * 2;
+
+    function guitarWaveform(time){
+      const points = [];
+      for (let i = 0; i < POINTS; i++) {
+        const x = xs[i];
+        // Blend multiple fast and slow harmonics
+        const fundamental = Math.sin((x / WIDTH) * 8 * Math.PI + time * 2);
+        const harmonic1 = Math.sin((x / WIDTH) * 30 * Math.PI + time * 6);
+        const harmonic2 = Math.sin((x / WIDTH) * 60 * Math.PI + time * 9);
+        const envelope = Math.exp(-Math.pow((x - WIDTH/2) / (WIDTH/3), 2)); // more energy in center
+        const transient = (Math.random() < 0.01) ? Math.random() * AMP * 2 : 0;
+        const y = BASE_Y + (fundamental * AMP + harmonic1 * 8 + harmonic2 * 3 + transient) * envelope + (Math.random() - 0.5) * NOISE;
+        points.push(`${x.toFixed(2)},${y.toFixed(2)}`);
+      }
+      return points.join(' ');
+    }
+
+    function animate(){
+      t += 0.03;
+      const path = guitarWaveform(t);
+      wave.setAttribute('points', path);
+      requestAnimationFrame(animate);
+    }
+
+    // init
+    wave.setAttribute('points', xs.map(x => `${x},${BASE_Y}`).join(' '));
+    requestAnimationFrame(animate);
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+  </script>
 </body>
 </html>
