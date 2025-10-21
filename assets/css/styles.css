@@ -34,11 +34,8 @@ body{
 
 /* Hero */
 .hero{display:flex;justify-content:center;align-items:center;padding:60px 0;position:relative;}
-.hero-inner{display:flex;justify-content:space-between;align-items:center;width:100%;position:relative;}
-.hero-side-img{height:90px;max-width:75px;object-fit:contain;} /* reduced by half */
-.left-img{margin-right:12px;}
-.right-img{margin-left:12px;}
-.hero-waveform{flex:1;height:75px;overflow:visible;pointer-events:none;} /* height halved */
+.hero-inner{display:flex;justify-content:center;align-items:center;width:100%;position:relative;}
+.hero-waveform{flex:1;height:75px;overflow:visible;pointer-events:none;}
 .hero-waveform polyline{stroke-linecap:round;stroke-linejoin:round;}
 
 /* Features */
@@ -90,24 +87,4 @@ body{
 .site-footer{
   padding:30px 0;
   color:var(--muted);
-  border-top:1px solid rgba(255,255,255,.02);
-  margin-top:40px;
-  text-align:center;
-}
-.site-footer .social{margin-top:10px;}
-.site-footer .social a{margin:0 8px;color:var(--muted);text-decoration:none;font-weight:600;}
-.site-footer .social a:hover{color:#ffffff;}
-
-.center{text-align:center}
-.muted{color:var(--muted)}
-
-/* Responsive tweaks */
-@media (min-width:900px){
-  .hero-inner{flex-direction:row; align-items:center; justify-content:space-between;}
-  .brand{text-align:center;}
-}
-@media (max-width:420px){
-  .logo-text{font-size:30px;}
-  .hero-waveform{height:60px;}
-  .hero-side-img{height:70px;max-width:60px;}
-}
+  border-top:1px solid rgba(255,
