@@ -12,32 +12,9 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <h1 class="logo-text">SignalForge</h1>
-        <div class="wave-container">
-          <img src="assets/img/guitar-left.png" alt="Guitar and pedal" class="wave-img left-img"/>
-          <svg id="hero-wave-svg" class="hero-waveform" viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#FFC35B"/>
-                <stop offset="50%" stop-color="#FF8C00"/>
-                <stop offset="100%" stop-color="#FFC35B"/>
-              </linearGradient>
-              <filter id="wave-glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            <polyline id="wave-low" fill="none" stroke="url(#wave-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wave-glow)"></polyline>
-            <polyline id="wave-mid" fill="none" stroke="url(#wave-gradient)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"></polyline>
-            <polyline id="wave-high" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"></polyline>
-          </svg>
-          <img src="assets/img/amp-right.png" alt="Amp and speaker" class="wave-img right-img"/>
-        </div>
-        <span class="logo-sub">Audio</span>
+        <h1 class="logo-text">SignalForge <span class="logo-sub">Audio</span></h1>
       </div>
+
       <nav class="main-nav" aria-label="Main navigation">
         <a href="products.html">Products</a>
         <a href="about.html">About</a>
@@ -50,12 +27,28 @@
   <main>
     <section class="hero">
       <div class="container hero-inner">
-        <div>
-          <h1>Boutique Tone. Forged to Last.</h1>
-          <p>Hand-tested in East London, South Africa. Premium guitar pedals built for recording and stage. Limited runs. Global shipping.</p>
-          <a class="btn" href="products.html">Shop Pedals</a>
-        </div>
-        <img src="assets/img/hero.jpg" alt="SignalForge Audio pedals lineup" />
+        <img src="assets/img/guitar-left.png" alt="Guitar and pedal illustration" class="hero-side-img left-img"/>
+        
+        <!-- Waveform SVG between the two images -->
+        <svg id="hero-wave-svg" class="hero-waveform" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#FFC35B"/>
+              <stop offset="50%" stop-color="#FF8C00"/>
+              <stop offset="100%" stop-color="#FFC35B"/>
+            </linearGradient>
+            <filter id="wave-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <polyline id="wave-main" fill="none" stroke="url(#wave-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wave-glow)"></polyline>
+        </svg>
+
+        <img src="assets/img/amp-right.png" alt="Amp and speaker illustration" class="hero-side-img right-img"/>
       </div>
     </section>
 
@@ -102,50 +95,36 @@
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/shop.js" defer></script>
 
-  <!-- Fuzzy waveform animation -->
   <script>
+  // Hero waveform animation
   (function(){
-    const SAMPLES=120, WIDTH=600, BASE_Y=50;
-    const LOW_AMP=20, MID_AMP=12, HIGH_AMP=6;
-    const LOW_FREQ=0.6, MID_FREQ=1.8, HIGH_FREQ=6.5;
-    const NOISE=1.4, TRANSIENT_DECAY=0.96, TRANSIENT_PROB=0.008;
+    const SAMPLES = 200;
+    const WIDTH = 1000;
+    const BASE_Y = 100;
+    const AMP = 40;
+    const FREQ = 1.8;
+    const SPEED = 0.1;
+    const svg = document.getElementById('hero-wave-svg');
+    const wave = document.getElementById('wave-main');
+    let t = 0;
 
-    const waveLow=document.getElementById('wave-low');
-    const waveMid=document.getElementById('wave-mid');
-    const waveHigh=document.getElementById('wave-high');
-    const xs = Array.from({length:SAMPLES+1}, (_,i)=> (i/SAMPLES)*WIDTH);
-    let t=0, transient=0;
-    const jitterPhases = Array.from({length:SAMPLES+1}, ()=>Math.random()*Math.PI*2);
+    const xs = Array.from({length:SAMPLES+1}, (_,i) => (i/SAMPLES)*WIDTH);
 
-    function buildPoints(amp,freq,speed,phase){
-      return xs.map((x,i)=>{
-        const nx=i/SAMPLES;
-        const y = BASE_Y
-          + amp*Math.sin((nx*freq*Math.PI*2)+(t*speed)+phase)
-          + amp*0.5*Math.sin((nx*freq*Math.PI*4)+(t*speed*1.8)+phase*1.7)
-          + amp*0.2*Math.sin((nx*freq*Math.PI*8)+(t*speed*3.5)+phase*2.9)
-          + transient*amp*(1-Math.abs(0.5-nx)*2)
-          + Math.sin(jitterPhases[i]+t*0.7)*NOISE;
+    function animateWave(){
+      const points = xs.map((x,i)=>{
+        const nx = i/SAMPLES;
+        const y = BASE_Y + AMP*Math.sin((nx*FREQ*2*Math.PI) + t) 
+                  + AMP*0.35*Math.sin((nx*FREQ*4*Math.PI) + t*1.8)
+                  + AMP*0.15*Math.sin((nx*FREQ*8*Math.PI) + t*3.5);
         return `${x},${y.toFixed(2)}`;
       }).join(' ');
-    }
 
-    function maybeTriggerTransient(){
-      if(Math.random()<TRANSIENT_PROB) transient+=0.8+Math.random()*1.6;
+      wave.setAttribute('points', points);
+      t += SPEED;
+      requestAnimationFrame(animateWave);
     }
-
-    function animate(){
-      maybeTriggerTransient();
-      transient*=TRANSIENT_DECAY;
-      if(transient<0.001) transient=0;
-      t+=0.06;
-      waveLow.setAttribute('points', buildPoints(LOW_AMP,LOW_FREQ,0.7,0.5));
-      waveMid.setAttribute('points', buildPoints(MID_AMP,MID_FREQ,1.8,1.2));
-      waveHigh.setAttribute('points', buildPoints(HIGH_AMP,HIGH_FREQ,3.8,2.2));
-      requestAnimationFrame(animate);
-    }
-    animate();
-    document.getElementById('year').textContent=new Date().getFullYear();
+    animateWave();
+    document.getElementById('year').textContent = new Date().getFullYear();
   })();
   </script>
 </body>
