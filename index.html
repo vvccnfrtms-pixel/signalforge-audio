@@ -7,16 +7,6 @@
   <meta name="description" content="SignalForge Audio — boutique guitar effect pedals. Hand-tested in East London. Premium tone, limited runs." />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="icon" href="assets/img/logo.svg" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "SignalForge Audio",
-    "url": "https://vvccnfrtms-pixel.github.io/signalforge-audio",
-    "logo": "https://vvccnfrtms-pixel.github.io/signalforge-audio/assets/img/logo.svg",
-    "sameAs": []
-  }
-  </script>
 </head>
 <body>
   <header class="site-header">
@@ -26,27 +16,23 @@
         <h1 class="logo-text">SignalForge <span class="logo-sub">Audio</span></h1>
 
         <!-- Multi-layer animated waveform -->
-        <svg class="waveform" viewBox="0 0 600 60" preserveAspectRatio="none">
-          <!-- Layer 1 -->
-          <polyline fill="none" stroke="#FF6B35" stroke-width="3" points="0,30 50,35 100,25 150,33 200,27 250,35 300,30 350,32 400,28 450,35 500,30 550,33 600,30">
-            <animate attributeName="points" dur="3s" repeatCount="indefinite"
-              values="
-                0,30 50,35 100,25 150,33 200,27 250,35 300,30 350,32 400,28 450,35 500,30 550,33 600,30;
-                0,30 50,28 100,32 150,30 200,35 250,27 300,32 350,30 400,33 450,28 500,35 550,30 600,32;
-                0,30 50,35 100,25 150,33 200,27 250,35 300,30 350,32 400,28 450,35 500,30 550,33 600,30
-              "
-            />
-          </polyline>
-          <!-- Layer 2 (slightly lighter orange for depth) -->
-          <polyline fill="none" stroke="#FF8C5A" stroke-width="2" points="0,32 50,37 100,27 150,35 200,29 250,37 300,32 350,34 400,30 450,37 500,32 550,35 600,32">
-            <animate attributeName="points" dur="3s" repeatCount="indefinite"
-              values="
-                0,32 50,37 100,27 150,35 200,29 250,37 300,32 350,34 400,30 450,37 500,32 550,35 600,32;
-                0,32 50,30 100,35 150,32 200,37 250,29 300,34 350,32 400,35 450,30 500,37 550,32 600,34;
-                0,32 50,37 100,27 150,35 200,29 250,37 300,32 350,34 400,30 450,37 500,32 550,35 600,32
-              "
-            />
-          </polyline>
+        <svg class="waveform" viewBox="0 0 800 60" preserveAspectRatio="none">
+          <!-- Layer 1: Main pulse -->
+          <polyline fill="none" stroke="url(#gradient1)" stroke-width="3" class="wave1" points="0,30 100,30 200,30 300,30 400,30 500,30 600,30 700,30 800,30" />
+          <!-- Layer 2: Secondary pulse for depth -->
+          <polyline fill="none" stroke="url(#gradient2)" stroke-width="2" class="wave2" points="0,30 100,30 200,30 300,30 400,30 500,30 600,30 700,30 800,30" />
+          <defs>
+            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FF6B35"/>
+              <stop offset="50%" stop-color="#FF8C5A"/>
+              <stop offset="100%" stop-color="#FF6B35"/>
+            </linearGradient>
+            <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FF8C5A"/>
+              <stop offset="50%" stop-color="#FFA079"/>
+              <stop offset="100%" stop-color="#FF8C5A"/>
+            </linearGradient>
+          </defs>
         </svg>
       </div>
 
@@ -115,6 +101,29 @@
 
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/shop.js" defer></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Animate the waveform dynamically
+    const wave1 = document.querySelector('.wave1');
+    const wave2 = document.querySelector('.wave2');
+    let t = 0;
+    function animateWave(){
+      let points1 = [];
+      let points2 = [];
+      for(let i=0;i<=8;i++){
+        let x = i*100;
+        let y1 = 30 + 10*Math.sin(t + i);
+        let y2 = 30 + 6*Math.sin(t*1.3 + i*1.1);
+        points1.push(`${x},${y1}`);
+        points2.push(`${x},${y2}`);
+      }
+      wave1.setAttribute('points', points1.join(' '));
+      wave2.setAttribute('points', points2.join(' '));
+      t+=0.05;
+      requestAnimationFrame(animateWave);
+    }
+    animateWave();
+  </script>
 </body>
 </html>
