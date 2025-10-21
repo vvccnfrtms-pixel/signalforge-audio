@@ -86,28 +86,27 @@
   <script>
   (function(){
     const SAMPLES = 200;
-    const WIDTH = 1000;
+    const WIDTH_DESKTOP = 1000;
     const BASE_Y = 75;
     const MAX_AMP = 55; 
     const BPM = 140;
     const wave = document.getElementById('wave-main');
     let t = 0;
 
-    const xs = Array.from({length:SAMPLES+1}, (_,i)=> (i/SAMPLES)*WIDTH);
+    let WIDTH = WIDTH_DESKTOP;
+    const xs = Array.from({length:SAMPLES+1}, (_,i)=> (i/SAMPLES)*WIDTH_DESKTOP);
 
-    let userAmplitude = 1; // interactive amplitude
+    let userAmplitude = 1;
 
-    // Amplitude envelope synced to BPM
     function amplitudeEnvelope(time){
       return (0.6 + 0.4 * Math.sin(time*2*Math.PI/(60/BPM))) * userAmplitude;
     }
 
-    // Distorted guitar wave with fuzz/overdrive effect
     function distortedGuitarWave(nx, env){
-      let y = Math.sin(nx*4*Math.PI + t*2.5) * 0.6;           // base
-      y += Math.sin(nx*16*Math.PI + t*10) * 0.25;            // high harmonic spikes
-      y += Math.sin(nx*32*Math.PI + t*28) * 0.08;            // tiny fuzziness
-      y += (Math.random()-0.5) * 0.12;                       // random grain
+      let y = Math.sin(nx*4*Math.PI + t*2.5) * 0.6;
+      y += Math.sin(nx*16*Math.PI + t*10) * 0.25;
+      y += Math.sin(nx*32*Math.PI + t*28) * 0.08;
+      y += (Math.random()-0.5) * 0.12;
       return y * env;
     }
 
@@ -120,29 +119,42 @@
       }).join(' ');
 
       wave.setAttribute('points', points);
-      t += 0.015; // slow horizontal motion
+      t += 0.015;
       requestAnimationFrame(animateWave);
     }
 
-    // Mouse / touch interactivity
-    function updateAmplitude(e){
-      let ratio = 0.8;
-      if(e.type.startsWith('mouse')){
-        const rect = wave.getBoundingClientRect();
-        const y = e.clientY - rect.top;
-        ratio = 1 - Math.min(Math.max(y/rect.height,0),1);
-      } else if(e.type.startsWith('touch')){
-        const rect = wave.getBoundingClientRect();
-        const y = e.touches[0].clientY - rect.top;
-        ratio = 1 - Math.min(Math.max(y/rect.height,0),1);
+    // Responsive width for mobile
+    function updateWidth(){
+      const container = document.querySelector('.features');
+      if(window.innerWidth < 768){
+        WIDTH = container.offsetWidth;
+        const scale = WIDTH / WIDTH_DESKTOP;
+        for(let i=0;i<xs.length;i++){
+          xs[i] = (i/SAMPLES) * WIDTH;
+        }
+      } else {
+        for(let i=0;i<xs.length;i++){
+          xs[i] = (i/SAMPLES) * WIDTH_DESKTOP;
+        }
       }
-      userAmplitude = 0.6 + 0.4*ratio;
     }
 
-    document.addEventListener('mousemove', updateAmplitude);
-    document.addEventListener('touchmove', updateAmplitude);
-
+    window.addEventListener('resize', updateWidth);
+    updateWidth();
     animateWave();
+
+    document.addEventListener('mousemove', e => {
+      const rect = wave.getBoundingClientRect();
+      const y = e.clientY - rect.top;
+      userAmplitude = 0.6 + 0.4*(1 - Math.min(Math.max(y/rect.height,0),1));
+    });
+
+    document.addEventListener('touchmove', e => {
+      const rect = wave.getBoundingClientRect();
+      const y = e.touches[0].clientY - rect.top;
+      userAmplitude = 0.6 + 0.4*(1 - Math.min(Math.max(y/rect.height,0),1));
+    });
+
     document.getElementById('year').textContent = new Date().getFullYear();
   })();
   </script>
