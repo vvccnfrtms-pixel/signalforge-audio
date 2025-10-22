@@ -4,69 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SignalCraft Audio — Boutique Guitar Pedals</title>
+  <meta name="description" content="SignalCraft Audio — boutique guitar effect pedals. Hand-tested in East London. Crafting Your Perfect Tone. Premium tone, limited runs." />
+  <link rel="icon" href="assets/img/logo.svg" />
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <style>
-    /* --- Responsive Logo with Waveform --- */
-    .brand {
-      position: relative;
-      width: 100%;
-      max-width: 300px;  /* maximum logo size on large screens */
-      margin: 0 auto;
-    }
-
-    .brand img.logo-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      z-index: 1;
-      position: relative;
-    }
-
-    .brand .waveform {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 200%; /* double width for smooth scrolling */
-      height: 50%; /* relative to logo container */
-      transform: translateY(-50%);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .brand .waveform svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .brand .waveform path {
-      stroke: white;
-      stroke-width: 2;
-      fill: transparent;
-      stroke-linecap: round;
-    }
-
-    @keyframes waveMove {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .brand .waveform svg {
-      animation: waveMove 4s linear infinite;
-    }
-
-    /* Optional: Adjust stroke width on smaller screens for balance */
-    @media (max-width: 768px) {
-      .brand .waveform path {
-        stroke-width: 1.5;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .brand .waveform path {
-        stroke-width: 1;
-      }
-    }
-  </style>
 </head>
 <body>
   <header class="site-header">
@@ -74,15 +14,6 @@
       <div class="brand">
         <!-- Logo image -->
         <img src="assets/img/logo-full.png" alt="SignalCraft Audio Logo" class="logo-img">
-
-        <!-- Animated waveform over logo -->
-        <div class="waveform">
-          <svg viewBox="0 0 1600 200" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0,100 C50,80 150,120 200,100 S350,120 400,100 S550,80 600,100 S750,120 800,100 S950,80 1000,100 S1150,120 1200,100 S1350,80 1400,100 S1550,120 1600,100"/>
-            <path d="M0,100 C50,90 150,110 200,100 S350,110 400,100 S550,90 600,100 S750,110 800,100 S950,90 1000,100 S1150,110 1200,100 S1350,90 1400,100 S1550,110 1600,100" opacity="0.5"/>
-            <path d="M0,100 C50,85 150,115 200,100 S350,115 400,100 S550,85 600,100 S750,115 800,100 S950,85 1000,100 S1150,115 1200,100 S1350,85 1400,100 S1550,115 1600,100" opacity="0.3"/>
-          </svg>
-        </div>
       </div>
 
       <nav class="main-nav" aria-label="Main navigation">
@@ -93,5 +24,100 @@
       </nav>
     </div>
   </header>
+
+  <main>
+    <!-- Hero section -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <h2 class="hero-slogan">Crafting Your Perfect Tone</h2>
+        <p class="hero-description">Hand-tested in East London, South Africa. Premium guitar pedals built for recording and stage. Limited runs. Global shipping.</p>
+        <a class="btn" href="products.html">Shop Pedals</a>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features container">
+      <article>
+        <h3>Premium Components</h3>
+        <p>Quality parts sourced from industry standard manufacturers for stability and superior tone.</p>
+      </article>
+      <article>
+        <h3>Designed In East London</h3>
+        <p>Tone design and final testing performed locally — giving every pedal a human touch.</p>
+      </article>
+      <article>
+        <h3>Worldwide Shipping</h3>
+        <p>We ship internationally with tracked courier options and export-friendly packaging.</p>
+      </article>
+    </section>
+
+    <!-- Products Preview -->
+    <section class="products-preview container" aria-labelledby="products-heading">
+      <h2 id="products-heading">Featured Pedals</h2>
+      <div id="featured-grid" class="grid">
+        <!-- Example curated product images -->
+        <div class="card">
+          <img src="assets/img/pedal1.jpg" alt="SignalCraft Fuzz Pedal" />
+          <h4>Fuzz Distortion</h4>
+          <p>Rugged analog fuzz with boutique tone. Limited edition finish.</p>
+        </div>
+        <div class="card">
+          <img src="assets/img/pedal2.jpg" alt="SignalCraft Delay Pedal" />
+          <h4>Analog Delay</h4>
+          <p>Warm, lush repeats with precise control for recording or live performance.</p>
+        </div>
+        <div class="card">
+          <img src="assets/img/pedal3.jpg" alt="SignalCraft Overdrive Pedal" />
+          <h4>Overdrive</h4>
+          <p>Natural tube-like overdrive that responds dynamically to your playing.</p>
+        </div>
+      </div>
+      <div class="center">
+        <a class="btn-outline" href="products.html">View All Products</a>
+      </div>
+    </section>
+
+    <section class="build-for-profit container">
+      <h2>Why SignalCraft Audio</h2>
+      <p>Targeted at recording guitarists who pay for premium tone. Small-batch runs, artist collaborations, and limited edition finishes — high margin, desirable products.</p>
+    </section>
+
+    <!-- Waveform relocated here -->
+    <section class="bottom-wave">
+      <svg id="logo-wave-svg" class="waveform" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FFD94B"/>
+            <stop offset="50%" stop-color="#FFC300"/>
+            <stop offset="100%" stop-color="#FFD94B"/>
+          </linearGradient>
+          <filter id="wave-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <polyline id="wave-low" fill="none" stroke="url(#wave-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wave-glow)"></polyline>
+        <polyline id="wave-mid" fill="none" stroke="url(#wave-gradient)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"></polyline>
+        <polyline id="wave-high" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"></polyline>
+      </svg>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> SignalCraft Audio — Designed & hand-tested in East London, South Africa.</small>
+      <div class="social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="YouTube">YT</a>
+        <a href="#" aria-label="TikTok">TT</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/shop.js" defer></script>
 </body>
 </html>
