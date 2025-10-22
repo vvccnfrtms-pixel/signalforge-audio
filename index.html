@@ -14,27 +14,6 @@
       <div class="brand">
         <!-- Logo image -->
         <img src="assets/img/logo-full.png" alt="SignalCraft Audio Logo" class="logo-img">
-
-        <!-- Waveform animation -->
-        <svg id="logo-wave-svg" class="waveform" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#FFD94B"/>
-              <stop offset="50%" stop-color="#FFC300"/>
-              <stop offset="100%" stop-color="#FFD94B"/>
-            </linearGradient>
-            <filter id="wave-glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-              <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-          <polyline id="wave-low" fill="none" stroke="url(#wave-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wave-glow)"></polyline>
-          <polyline id="wave-mid" fill="none" stroke="url(#wave-gradient)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"></polyline>
-          <polyline id="wave-high" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"></polyline>
-        </svg>
       </div>
 
       <nav class="main-nav" aria-label="Main navigation">
@@ -101,6 +80,29 @@
     <section class="build-for-profit container">
       <h2>Why SignalCraft Audio</h2>
       <p>Targeted at recording guitarists who pay for premium tone. Small-batch runs, artist collaborations, and limited edition finishes — high margin, desirable products.</p>
+    </section>
+
+    <!-- Waveform relocated here -->
+    <section class="bottom-wave">
+      <svg id="logo-wave-svg" class="waveform" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FFD94B"/>
+            <stop offset="50%" stop-color="#FFC300"/>
+            <stop offset="100%" stop-color="#FFD94B"/>
+          </linearGradient>
+          <filter id="wave-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <polyline id="wave-low" fill="none" stroke="url(#wave-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wave-glow)"></polyline>
+        <polyline id="wave-mid" fill="none" stroke="url(#wave-gradient)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"></polyline>
+        <polyline id="wave-high" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"></polyline>
+      </svg>
     </section>
   </main>
 
