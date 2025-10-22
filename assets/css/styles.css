@@ -1,77 +1,211 @@
-:root{
-  --bg:#0B0C0D;
-  --accent:#FFD94B;
-  --accent-dark:#FFC300;
-  --muted:#9aa0a6;
-  --text:#E6EEF3;
-  --maxw:1200px;
-  --radius:8px;
+:root {
+  --bg: #0B0C0D;
+  --accent: #FFD94B;
+  --accent-dark: #FFC300;
+  --muted: #9aa0a6;
+  --text: #E6EEF3;
+  --maxw: 1200px;
+  --radius: 8px;
   font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-*{box-sizing:border-box;}
-html,body{height:100%;}
-body{
-  margin:0;
-  color:var(--text);
-  background-color:var(--bg);
-  line-height:1.5;
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
 }
-.container{max-width:var(--maxw);margin:0 auto;padding:22px}
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  color: var(--text);
+  background-color: var(--bg);
+  line-height: 1.5;
+}
+
+/* Container */
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 22px;
+}
 
 /* Header */
-.site-header{padding:20px 0;display:flex;flex-direction:column;align-items:center;}
-.header-inner{display:flex;width:100%;justify-content:space-between;align-items:center;flex-wrap:wrap;}
-.brand{text-align:center;}
-
-/* Logo Image */
-.logo-img{
-  display:block;
-  max-width:100%;
-  width:320px;   /* default desktop */
-  height:auto;
-  margin:0 auto;
+.site-header {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-inner {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.brand {
+  text-align: center;
 }
 
-/* Hero Waveform */
-.waveform{
-  width:100%;
-  max-width:100%;
-  height:80px;
-  margin-top:12px;
+/* Logo */
+.logo-img {
+  display: block;
+  max-width: 100%;
+  width: 320px;
+  height: auto;
+  margin: 0 auto;
 }
 
 /* Navigation */
-.main-nav{display:flex;gap:18px;align-items:center;margin-top:12px;}
-.main-nav a{color:var(--muted);text-decoration:none;font-weight:600;transition:color 0.2s ease;}
-.main-nav a:hover{color:#ffffff}
-.main-nav .cta{background:var(--accent-dark);color:#111;padding:8px 16px;border-radius:6px;font-weight:700;}
+.main-nav {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: 12px;
+}
+.main-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+.main-nav a:hover {
+  color: #ffffff;
+}
+.main-nav .cta {
+  background: var(--accent-dark);
+  color: #111;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 700;
+}
 
 /* Hero Section */
-.hero{display:flex;justify-content:center;align-items:center;padding:60px 0;flex-direction:column;text-align:center;}
-.hero-slogan{font-size:28px;margin-bottom:12px;}
-.hero-description{font-size:16px;margin-bottom:20px;}
-.btn{background:var(--accent-dark);color:#111;padding:10px 24px;border-radius:6px;font-weight:700;text-decoration:none;}
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0;
+  flex-direction: column;
+  text-align: center;
+}
+.hero-slogan {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+.hero-description {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.btn {
+  background: var(--accent-dark);
+  color: #111;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+}
 
-/* Features */
-.features{display:flex;gap:18px;justify-content:space-between;padding:36px 0;flex-wrap:wrap;}
-.features article{flex:1;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:10px;min-width:250px;}
-.features h3{margin-bottom:10px;}
+/* Features Section */
+.features {
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  padding: 36px 0;
+  flex-wrap: wrap;
+}
+.features article {
+  flex: 1;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 18px;
+  border-radius: 10px;
+  min-width: 250px;
+}
+.features h3 {
+  margin-bottom: 10px;
+}
 
 /* Products Grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
-.card{background:#111;padding:12px;border-radius:8px;text-align:center;transition:transform 0.2s, box-shadow 0.2s;}
-.card:hover{transform:scale(1.03);box-shadow:0 0 12px rgba(255,217,75,0.4);}
-.card img{max-width:100%;border-radius:6px;margin-bottom:8px;}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+.card {
+  background: #111;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 12px rgba(255, 217, 75, 0.4);
+}
+.card img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+/* ===== Animated Wave Section (NEW) ===== */
+.wave-section {
+  position: relative;
+  width: 100vw;
+  margin: 0;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  background: transparent;
+}
+.waveform {
+  width: 100%;
+  height: 100px;
+  display: block;
+  background: url('waveform.svg') repeat-x;
+  background-size: contain;
+  animation: waveMove 6s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 217, 75, 0.6));
+}
+
+@keyframes waveMove {
+  0% { background-position-x: 0; }
+  100% { background-position-x: 1000px; }
+}
 
 /* Footer */
-.site-footer{padding:24px 0;text-align:center;background:#090A0B;}
-.site-footer .social a{margin:0 8px;color:var(--muted);text-decoration:none;}
-.site-footer .social a:hover{color:var(--accent-dark);}
+.site-footer {
+  padding: 24px 0;
+  text-align: center;
+  background: #090A0B;
+}
+.site-footer .social a {
+  margin: 0 8px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.site-footer .social a:hover {
+  color: var(--accent-dark);
+}
+
+/* Small Footer Text */
+.footer-note {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 10px;
+}
 
 /* Responsive Adjustments */
-@media (max-width:768px){
-  .logo-img{width:90%;} /* scales logo and wave to mobile */
-  .waveform{height:60px;} /* keep waveform proportionate */
-  .features{flex-direction:column;}
+@media (max-width: 768px) {
+  .logo-img {
+    width: 90%;
+  }
+  .features {
+    flex-direction: column;
+  }
+  .waveform {
+    height: 80px;
+  }
 }
