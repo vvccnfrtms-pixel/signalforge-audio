@@ -8,9 +8,8 @@
   <link rel="icon" href="assets/img/logo.svg" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 
-  <!-- Small inline CSS to guarantee correct sizing/spacing for footer social icons -->
   <style>
-    /* Footer tweaks for social icons */
+    /* Footer social icons (as before) */
     .site-footer .social {
       display: flex;
       gap: 12px;
@@ -22,39 +21,35 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 40px;   /* tappable area */
-      height: 40px;  /* tappable area */
+      width: 40px;
+      height: 40px;
       border-radius: 6px;
       text-decoration: none;
-      color: inherit; /* lets svg use currentColor if desired */
+      color: inherit;
       transition: transform .12s ease, background-color .12s ease;
     }
 
-    .social-icon:focus,
-    .social-icon:hover {
+    .social-icon:hover,
+    .social-icon:focus {
       transform: translateY(-2px);
       outline: none;
     }
 
-    /* Icon SVG sizing (actual visible glyph) */
     .social-icon svg {
       width: 20px;
       height: 20px;
       display: block;
     }
 
-    /* Optional: subtle background for hover to improve tap target feedback */
     .social-icon:hover {
       background-color: rgba(255,255,255,0.04);
     }
 
-    /* Ensure footer small text looks balanced with icons */
     .site-footer small {
       display: block;
       line-height: 1.4;
     }
 
-    /* Responsive tweak: stack footer elements on very small widths */
     @media (max-width: 420px) {
       .site-footer .container {
         display: flex;
@@ -104,9 +99,25 @@
       </article>
     </section>
 
+    <!-- Featured Pedals (now only Overdrive) -->
     <section class="products-preview container" aria-labelledby="products-heading">
       <h2 id="products-heading">Featured Pedals</h2>
       <div id="featured-grid" class="grid">
+        <div class="card">
+          <img src="assets/img/pedal3.jpg" alt="SignalCraft Overdrive Pedal" />
+          <h4>Overdrive</h4>
+          <p>Natural tube-like overdrive that responds dynamically to your playing.</p>
+        </div>
+      </div>
+      <div class="center">
+        <a class="btn-outline" href="products.html">View All Products</a>
+      </div>
+    </section>
+
+    <!-- NEW SECTION: Pedals in the Making -->
+    <section class="products-preview container" aria-labelledby="in-progress-heading">
+      <h2 id="in-progress-heading">Pedals in the Making</h2>
+      <div id="in-progress-grid" class="grid">
         <div class="card">
           <img src="assets/img/pedal1.jpg" alt="SignalCraft Fuzz Pedal" />
           <h4>Fuzz Distortion</h4>
@@ -117,14 +128,6 @@
           <h4>Analog Delay</h4>
           <p>Warm, lush repeats with precise control for recording or live performance.</p>
         </div>
-        <div class="card">
-          <img src="assets/img/pedal3.jpg" alt="SignalCraft Overdrive Pedal" />
-          <h4>Overdrive</h4>
-          <p>Natural tube-like overdrive that responds dynamically to your playing.</p>
-        </div>
-      </div>
-      <div class="center">
-        <a class="btn-outline" href="products.html">View All Products</a>
       </div>
     </section>
 
@@ -169,7 +172,6 @@
           target="_blank"
           rel="noopener"
         >
-          <!-- Simple, accessible Instagram glyph (square with inner circle & small dot) -->
           <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
             <circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
@@ -186,7 +188,6 @@
           target="_blank"
           rel="noopener"
         >
-          <!-- YouTube play button glyph -->
           <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
             <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z" fill="currentColor"></path>
           </svg>
@@ -201,10 +202,7 @@
           target="_blank"
           rel="noopener"
         >
-          <!-- Simplified TikTok note glyph -->
           <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
-            <!-- TikTok logo often combines a music-note shape with layered colors.
-                 Here we provide a compact single-color glyph that is recognizable. -->
             <path d="M12.5 2v11.3a3.7 3.7 0 1 1-1.6-3.1V6.2L17 7.6V9.4a6.3 6.3 0 1 0 1.5 3.9V3.6L12.5 2z" fill="currentColor"></path>
           </svg>
         </a>
@@ -213,7 +211,6 @@
   </footer>
 
   <script>
-    // Fill copyright year
     document.addEventListener('DOMContentLoaded', function () {
       var y = new Date().getFullYear();
       var el = document.getElementById('year');
