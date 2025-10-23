@@ -4,264 +4,221 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SignalCraft Audio — Boutique Guitar Pedals</title>
-  <meta name="description" content="SignalCraft Audio — boutique guitar effect pedals. Hand-tested in East London. Crafting your perfect tone through precision analog circuitry." />
-  <link rel="icon" href="favicon.png" type="image/png" />
+  <meta name="description" content="SignalCraft Audio — boutique guitar effect pedals. Hand-tested in East London. Crafting Your Perfect Tone. Premium tone, limited runs." />
+  <link rel="icon" href="assets/img/logo.svg" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 
   <style>
-    /* --- Reset & Base Styles --- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* Footer social icons (as before) */
+    .site-footer .social {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 8px;
     }
 
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background-color: #0e0e0e;
-      color: #fff;
-      line-height: 1.6;
-      overflow-x: hidden;
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .12s ease, background-color .12s ease;
     }
 
-    img {
-      max-width: 100%;
+    .social-icon:hover,
+    .social-icon:focus {
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .social-icon svg {
+      width: 20px;
+      height: 20px;
       display: block;
     }
 
-    a {
-      color: #fff;
-      text-decoration: none;
+    .social-icon:hover {
+      background-color: rgba(255,255,255,0.04);
     }
 
-    h1, h2, h3 {
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .site-footer small {
+      display: block;
+      line-height: 1.4;
     }
 
-    /* --- Header --- */
-    header {
-      text-align: center;
-      padding: 4rem 1rem;
-      background: url('hero-bg.jpg') center/cover no-repeat;
-      position: relative;
-      z-index: 1;
-    }
-
-    header::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: -1;
-    }
-
-    header h1 {
-      font-size: 2.6rem;
-      margin-bottom: 0.5rem;
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    header p {
-      font-size: 1.1rem;
-      color: #ccc;
-      animation: fadeInUp 1.4s ease forwards;
-    }
-
-    /* --- Section Wrapper --- */
-    section {
-      padding: 4rem 1rem;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s ease;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: #ffcc00;
-    }
-
-    /* --- Pedal Grid --- */
-    .pedal-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .pedal-card {
-      background-color: #1a1a1a;
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    .pedal-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.8s ease;
-    }
-
-    .pedal-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 25px rgba(255, 204, 0, 0.25);
-    }
-
-    .pedal-card img {
-      width: 100%;
-      height: auto;
-    }
-
-    .pedal-card h3 {
-      margin: 1rem 0;
-      color: #fff;
-    }
-
-    .pedal-card p {
-      color: #aaa;
-      font-size: 0.9rem;
-      padding: 0 1rem 1.5rem;
-    }
-
-    /* --- Section Background Variations --- */
-    .featured {
-      background-color: #0e0e0e;
-    }
-
-    .in-progress {
-      background-color: #151515;
-      border-top: 1px solid #222;
-    }
-
-    /* --- Footer --- */
-    footer {
-      background-color: #000;
-      text-align: center;
-      padding: 2rem 1rem;
-      color: #999;
-      font-size: 0.9rem;
-    }
-
-    footer .social-icons {
-      margin-top: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-
-    footer .social-icons a {
-      color: #fff;
-      font-size: 1.5rem;
-      transition: color 0.3s ease;
-    }
-
-    footer .social-icons a:hover {
-      color: #ffcc00;
-    }
-
-    footer p {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      color: #777;
-    }
-
-    /* --- Animations --- */
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* --- Responsive --- */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      section h2 {
-        font-size: 1.6rem;
+    @media (max-width: 420px) {
+      .site-footer .container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
       }
     }
   </style>
-
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-
-  <!-- Header -->
-  <header>
-    <h1>SignalCraft Audio</h1>
-    <p>Boutique Guitar Pedals — Hand-Tested in East London</p>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="assets/img/logo-full.png" alt="SignalCraft Audio Logo" class="logo-img">
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a class="cta btn" href="products.html">Shop</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Featured Pedals -->
-  <section class="featured fade-section">
-    <h2>Featured Pedals</h2>
-    <div class="pedal-grid">
-      <div class="pedal-card fade-card">
-        <img src="overdrive.jpg" alt="Overdrive Pedal">
-        <h3>Overdrive</h3>
-        <p>Classic tube-like warmth with dynamic touch response. Perfect for expressive playing and natural grit.</p>
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h2 class="hero-slogan">Crafting Your Perfect Tone</h2>
+        <p class="hero-description">Hand-tested in East London, South Africa. Premium guitar pedals built for recording and stage. Limited runs. Global shipping.</p>
+        <a class="btn" href="products.html">Shop Pedals</a>
+      </div>
+    </section>
+
+    <section class="features container">
+      <article>
+        <h3>Premium Components</h3>
+        <p>Quality parts sourced from industry standard manufacturers for stability and superior tone.</p>
+      </article>
+      <article>
+        <h3>Designed In East London</h3>
+        <p>Tone design and final testing performed locally — giving every pedal a human touch.</p>
+      </article>
+      <article>
+        <h3>Worldwide Shipping</h3>
+        <p>We ship internationally with tracked courier options and export-friendly packaging.</p>
+      </article>
+    </section>
+
+    <!-- Featured Pedals (now only Overdrive) -->
+    <section class="products-preview container" aria-labelledby="products-heading">
+      <h2 id="products-heading">Featured Pedals</h2>
+      <div id="featured-grid" class="grid">
+        <div class="card">
+          <img src="assets/img/pedal3.jpg" alt="SignalCraft Overdrive Pedal" />
+          <h4>Overdrive</h4>
+          <p>Natural tube-like overdrive that responds dynamically to your playing.</p>
+        </div>
+      </div>
+      <div class="center">
+        <a class="btn-outline" href="products.html">View All Products</a>
+      </div>
+    </section>
+
+    <!-- NEW SECTION: Pedals in the Making -->
+    <section class="products-preview container" aria-labelledby="in-progress-heading">
+      <h2 id="in-progress-heading">Pedals in the Making</h2>
+      <div id="in-progress-grid" class="grid">
+        <div class="card">
+          <img src="assets/img/pedal1.jpg" alt="SignalCraft Fuzz Pedal" />
+          <h4>Fuzz Distortion</h4>
+          <p>Rugged analog fuzz with boutique tone. Limited edition finish.</p>
+        </div>
+        <div class="card">
+          <img src="assets/img/pedal2.jpg" alt="SignalCraft Delay Pedal" />
+          <h4>Analog Delay</h4>
+          <p>Warm, lush repeats with precise control for recording or live performance.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="build-for-profit container">
+      <h2>Why SignalCraft Audio</h2>
+      <p>Targeted at recording guitarists who pay for premium tone. Small-batch runs, artist collaborations, and limited edition finishes — high margin, desirable products.</p>
+    </section>
+
+    <section class="bottom-wave">
+      <svg id="logo-wave-svg" class="waveform" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FFD94B"/>
+            <stop offset="50%" stop-color="#FFC300"/>
+            <stop offset="100%" stop-color="#FFD94B"/>
+          </linearGradient>
+          <filter id="wave-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <polyline id="wave-low" fill="none" stroke="url(#wave-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#wave-glow)"></polyline>
+        <polyline id="wave-mid" fill="none" stroke="url(#wave-gradient)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"></polyline>
+        <polyline id="wave-high" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"></polyline>
+      </svg>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> SignalCraft Audio — Designed & hand-tested in East London, South Africa.</small>
+      <div class="social" aria-label="SignalCraft social links">
+        <!-- Instagram -->
+        <a
+          class="social-icon"
+          href="https://www.instagram.com/yourhandle"
+          aria-label="SignalCraft on Instagram"
+          title="Instagram"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+            <circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+            <circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"></circle>
+          </svg>
+        </a>
+
+        <!-- YouTube -->
+        <a
+          class="social-icon"
+          href="https://www.youtube.com/yourchannel"
+          aria-label="SignalCraft on YouTube"
+          title="YouTube"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z" fill="currentColor"></path>
+          </svg>
+        </a>
+
+        <!-- TikTok -->
+        <a
+          class="social-icon"
+          href="https://www.tiktok.com/@yourhandle"
+          aria-label="SignalCraft on TikTok"
+          title="TikTok"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+            <path d="M12.5 2v11.3a3.7 3.7 0 1 1-1.6-3.1V6.2L17 7.6V9.4a6.3 6.3 0 1 0 1.5 3.9V3.6L12.5 2z" fill="currentColor"></path>
+          </svg>
+        </a>
       </div>
     </div>
-  </section>
-
-  <!-- Pedals in the Making -->
-  <section class="in-progress fade-section">
-    <h2>Pedals in the Making</h2>
-    <div class="pedal-grid">
-      <div class="pedal-card fade-card">
-        <img src="fuzz-distortion.jpg" alt="Fuzz Distortion Pedal">
-        <h3>Fuzz Distortion</h3>
-        <p>Vintage fuzz with raw harmonic edge. A reimagined analog beast inspired by 1970s psychedelic tones.</p>
-      </div>
-
-      <div class="pedal-card fade-card">
-        <img src="analog-delay.jpg" alt="Analog Delay Pedal">
-        <h3>Analog Delay</h3>
-        <p>Warm, lush echoes powered by true analog circuitry. Create depth, space, and atmosphere in your sound.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="social-icons">
-      <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
-    </div>
-    <p>© <span id="year"></span> SignalCraft Audio — Designed & Hand-Tested in East London</p>
   </footer>
 
-  <!-- Scroll Animation Script -->
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.2 });
-
-    document.querySelectorAll('.fade-section, .fade-card').forEach(el => observer.observe(el));
+    document.addEventListener('DOMContentLoaded', function () {
+      var y = new Date().getFullYear();
+      var el = document.getElementById('year');
+      if (el) el.textContent = y;
+    });
   </script>
 
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/shop.js" defer></script>
 </body>
 </html>
